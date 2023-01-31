@@ -94,6 +94,7 @@ console.log(marketplace);
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
 
+console.log("TODO 2 :");
 const numberOfProduct = marketplace.length;
 console.log(numberOfProduct);
 
@@ -102,15 +103,43 @@ console.log(numberOfProduct);
 // 2. Log the variable
 // 3. Log how many brands we have
 
+console.log("TODO 3 :");
+var listeOfBrands = [];
+for(let i = 0;i<numberOfProduct;i++){
+  listeOfBrands.push(marketplace[i]['brand']);
+}
+console.log(listeOfBrands);
+
 // 🎯 TODO 4: Sort by price
 // 1. Create a function to sort the marketplace products by price
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
 
+console.log("TODO 4 :");
+var listeOfPrices = [];
+let floatPrice =0;
+for(let i = 0;i<numberOfProduct;i++){ //Create a list of price
+  listeOfPrices.push(marketplace[i]['price']);
+}
+listeOfPrices = listeOfPrices.sort(function(a, b){return a-b}); //b-a pour l'autre sens
+
+console.log(listeOfPrices);
+
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
+
+console.log("TODO 5 :");
+var listOfDates = [];
+for(let i = 0;i<numberOfProduct;i++){ //Create a list of price
+  listOfDates.push(marketplace[i]['released']);
+}
+listOfDates = listOfDates.sort(); //b-a pour l'autre sens
+
+console.log(listOfDates);
+
+
 
 // 🎯 TODO 6: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
