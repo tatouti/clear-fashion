@@ -157,7 +157,7 @@ console.log(filteredPrice);
 // 1. Determine the average price of the marketplace
 // 2. Log the average
 
-console.log("TODO 6 :");
+console.log("TODO 7 :");
 let somme = 0;
 for(let i = 0;i<listeOfPrices.length;i++){ //Create a list of price
   somme+=listeOfPrices[i];
