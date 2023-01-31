@@ -237,7 +237,7 @@ const sortBrandsPrice ={}
 for (const key of Object.keys(brandsPrice)){
   sortBrandsPrice[key] = brandsPrice[key].sort(function(a, b){return b-a});
 }
-console.log("Dictionnaire des prix triés selon les marques",sortBrandsPrice);
+console.log("Dictionnaire des prix décroissants selon les marques",sortBrandsPrice);
 
 
 // 🎯 TODO 10: Sort by date for each brand
@@ -274,6 +274,25 @@ console.log("Dictionnaire des dates triées du plus ancien au récent",sortBrand
 // 🎯 TODO 11: Compute the p90 price value
 // 1. Compute the p90 price value of each brand
 // The p90 value (90th percentile) is the lower value expected to be exceeded in 90% of the products
+
+console.log("TODO 11 : ");
+
+const sortBrandsPriceRev ={}
+for (const key of Object.keys(brandsPrice)){ //Fonction pour remettre dans le sens croissant
+  sortBrandsPriceRev[key] = brandsPrice[key].sort(function(a, b){return a-b});
+}
+console.log("Dictionnaire des prix croissants selon les marques",sortBrandsPriceRev);
+
+let tempLength;
+let p90index;
+let p90value;
+for (const key of Object.keys(sortBrandsPriceRev)){ 
+  tempLength = sortBrandsPriceRev[key].length;
+  p90index = Math.floor(tempLength*0.1);
+  p90value = Object.values(sortBrandsPriceRev[key])[p90index];
+  console.log(`La valeur p90 pour ${key} est ${p90value} € `);
+}
+
 
 /**
  * 🧥
