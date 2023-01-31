@@ -4,6 +4,7 @@
 
 console.log('🚀 This is it.');
 
+console.log("TODO 1 Method 1:");
 const MY_FAVORITE_BRANDS = [
   {
     'name': 'Faguo',
@@ -18,9 +19,19 @@ const MY_FAVORITE_BRANDS = [
     'url': 'https://ecclo.fr/'
   }
 ];
+console.table(MY_FAVORITE_BRANDS);
+var dico = {'https://www.faguo-store.com/fr/vetements/7606-arcy-t-shirt-en-coton-recycle-kaki.html':'17.50€',
+'https://www.loom.fr/collections/t-shirts-polos/products/le-t-shirt-homme':'25€',
+'https://ecclo.fr/products/t-shirt-noir-boycott-world-cup-2022':'19€'
+};
+
+for (let i = 0; i < MY_FAVORITE_BRANDS.length; i++) {
+    var [key, value] = Object.entries(dico)[i];
+    MY_FAVORITE_BRANDS[i].cheapest = key;
+    MY_FAVORITE_BRANDS[i].price = value;   
+}
 
 console.table(MY_FAVORITE_BRANDS);
-console.log(MY_FAVORITE_BRANDS[0]);
 
 /**
  * 🌱
@@ -35,6 +46,39 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // I can find on these e-shops
 // 2. Log the variable
 
+console.log("TODO 1 Method 2:")
+var cheapest = [
+  {
+    'url':'https://www.faguo-store.com/fr/vetements/7606-arcy-t-shirt-en-coton-recycle-kaki.html', 
+    'price':17.5,
+  }, 
+  {
+    'url':'https://www.loom.fr/collections/t-shirts-polos/products/le-t-shirt-homme',
+    'price':25
+  },
+  {
+    'url':'https://ecclo.fr/products/t-shirt-noir-boycott-world-cup-2022',
+    'price':19
+  }
+];
+console.table(cheapest);
+
+for (let i = 0; i < MY_FAVORITE_BRANDS.length ; i++) {
+  MY_FAVORITE_BRANDS[i]['cheapest'] = cheapest[i];
+}
+console.table(MY_FAVORITE_BRANDS)
+
+let cheapPrice = 100;
+var url = 'url';
+for (let i = 0; i < MY_FAVORITE_BRANDS.length ; i++) {
+  if(MY_FAVORITE_BRANDS[0]['cheapest']['price']<cheapPrice){
+    cheapPrice = MY_FAVORITE_BRANDS[0]['cheapest']['price'];
+    url = MY_FAVORITE_BRANDS[0]['cheapest']['url'];
+  }
+}
+
+console.log('Le prix le plus bas est : ' + cheapPrice + " et son url est : "+url);
+
 /**
  * 👕
  * Easy 😁?
@@ -44,9 +88,14 @@ console.log(MY_FAVORITE_BRANDS[0]);
  * 👕
  */
 
+console.log(marketplace);
+
 // 🎯 TODO 2: Number of products
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
+
+const numberOfProduct = marketplace.length;
+console.log(numberOfProduct);
 
 // 🎯 TODO 3: Brands name
 // 1. Create a variable and assign it the list of brands name only
