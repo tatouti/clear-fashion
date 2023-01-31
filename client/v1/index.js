@@ -189,6 +189,9 @@ console.log(`La moyenne des prix est de : ${average.toFixed(2)} € `);
 // 2. Log the variable
 // 3. Log the number of products by brands
 
+console.log("TODO 8 :");
+
+
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
