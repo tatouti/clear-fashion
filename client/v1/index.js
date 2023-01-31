@@ -157,6 +157,15 @@ console.log(filteredPrice);
 // 1. Determine the average price of the marketplace
 // 2. Log the average
 
+console.log("TODO 6 :");
+let somme = 0;
+for(let i = 0;i<listeOfPrices.length;i++){ //Create a list of price
+  somme+=listeOfPrices[i];
+}
+let average = somme/listeOfPrices.length;
+
+console.log(`La moyenne des prix est de : ${average.toFixed(2)} € `);
+
 /**
  * 🏎
  * We are almost done with the `marketplace` variable
