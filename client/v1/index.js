@@ -161,7 +161,7 @@ console.log(`Produits avec un prix entre ${small} et ${big} € `,filteredPrice)
 
 console.log("TODO 7 :");
 let somme = 0;
-for(let i = 0;i<listeOfPrices.length;i++){ //Create a list of price
+for(let i = 0;i<listeOfPrices.length;i++){
   somme+=listeOfPrices[i];
 }
 let average = somme/listeOfPrices.length;
@@ -192,23 +192,23 @@ console.log(`La moyenne des prix est de : ${average.toFixed(2)} € `);
 // 3. Log the number of products by brands
 
 console.log("TODO 8 :");
-const brands ={};
+const brandsName ={};
 var tempB;
 for (let i = 0;i<numberOfProduct;i++){
   tempB = marketplace[i]['brand'];
-  if(tempB in brands){
-    brands[tempB].push(marketplace[i]['name']);
+  if(tempB in brandsName){
+    brandsName[tempB].push(marketplace[i]['name']);
   }
   else{
-    brands[tempB] = (marketplace[i]['name']).split();
+    brandsName[tempB] = [marketplace[i]['name']];
   }
 }
-console.log("Dictionnaire des habits selon les marques",brands);
+console.log("Dictionnaire des habits selon les marques",brandsName);
 
 const countBrands ={};
-for (const key of Object.keys(brands)){
+for (const key of Object.keys(brandsName)){
   countBrands[key] = 0;
-  for (const element of brands[key]) {
+  for (const element of brandsName[key]) {
     countBrands[key] +=1;
   }
 }
@@ -218,6 +218,28 @@ console.log("Dictionnaire du nombre d'habits par marque",countBrands);
 // 🎯 TODO 9: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+
+console.log("TODO 9 :");
+const brandsPrice ={};
+var tempB;
+for (let i = 0;i<numberOfProduct;i++){
+  tempB = marketplace[i]['brand'];
+  if(tempB in brandsPrice){
+    brandsPrice[tempB].push(marketplace[i]['price']);
+  }
+  else{
+    brandsPrice[tempB] = [marketplace[i]['price']];
+  }
+}
+console.log("Dictionnaire des prix selon les marques",brandsPrice);
+
+const sortBrands ={}
+for (const key of Object.keys(brandsPrice)){
+  sortBrands[key] = brandsPrice[key].sort(function(a, b){return b-a});
+
+}
+console.log("Dictionnaire des prix triés selon les marques",sortBrands);
+
 
 // 🎯 TODO 10: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
