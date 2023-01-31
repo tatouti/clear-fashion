@@ -139,11 +139,19 @@ listOfDates = listOfDates.sort(); //b-a pour l'autre sens
 
 console.log(listOfDates);
 
-
-
 // 🎯 TODO 6: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
+
+console.log("TODO 6 :");
+var filteredPrice = []
+for(let i = 0;i<listeOfPrices.length;i++){ //Create a list of price
+  if((listeOfPrices[i]>50) && (listeOfPrices[i]<100)){
+    filteredPrice.push(listeOfPrices[i]);
+  }
+}
+
+console.log(filteredPrice);
 
 // 🎯 TODO 7: Average price
 // 1. Determine the average price of the marketplace
