@@ -135,7 +135,7 @@ var listOfDates = [];
 for(let i = 0;i<numberOfProduct;i++){ //Create a list of price
   listOfDates.push(marketplace[i]['released']);
 }
-listOfDates = listOfDates.sort(); //b-a pour l'autre sens
+listOfDates = listOfDates.sort(); 
 
 console.log("Dates de sortie triées des plus récentes au plus anciennes",listOfDates);
 
@@ -233,17 +233,36 @@ for (let i = 0;i<numberOfProduct;i++){
 }
 console.log("Dictionnaire des prix selon les marques",brandsPrice);
 
-const sortBrands ={}
+const sortBrandsPrice ={}
 for (const key of Object.keys(brandsPrice)){
-  sortBrands[key] = brandsPrice[key].sort(function(a, b){return b-a});
-
+  sortBrandsPrice[key] = brandsPrice[key].sort(function(a, b){return b-a});
 }
-console.log("Dictionnaire des prix triés selon les marques",sortBrands);
+console.log("Dictionnaire des prix triés selon les marques",sortBrandsPrice);
 
 
 // 🎯 TODO 10: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
+
+console.log("TODO 10 :");
+const brandsDate ={};
+var tempB;
+for (let i = 0;i<numberOfProduct;i++){
+  tempB = marketplace[i]['brand'];
+  if(tempB in brandsDate){
+    brandsDate[tempB].push(marketplace[i]['released']);
+  }
+  else{
+    brandsDate[tempB] = [marketplace[i]['released']];
+  }
+}
+console.log("Dictionnaire des dates selon les marques",brandsDate);
+
+const sortBrandsDate ={}
+for (const key of Object.keys(brandsPrice)){
+  sortBrandsDate[key] = (brandsDate[key].sort()).reverse();
+}
+console.log("Dictionnaire des dates triées du plus ancien au récent",sortBrandsDate);
 
 /**
  * 💶
