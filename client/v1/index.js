@@ -108,7 +108,7 @@ var listeOfBrands = [];
 for(let i = 0;i<numberOfProduct;i++){
   listeOfBrands.push(marketplace[i]['brand']);
 }
-console.log(listeOfBrands);
+console.log("Liste des marques",listeOfBrands);
 
 // 🎯 TODO 4: Sort by price
 // 1. Create a function to sort the marketplace products by price
@@ -123,7 +123,7 @@ for(let i = 0;i<numberOfProduct;i++){ //Create a list of price
 }
 listeOfPrices = listeOfPrices.sort(function(a, b){return a-b}); //b-a pour l'autre sens
 
-console.log(listeOfPrices);
+console.log("Prix triés des plus bas au plus élevés",listeOfPrices);
 
 // 🎯 TODO 5: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
@@ -137,7 +137,7 @@ for(let i = 0;i<numberOfProduct;i++){ //Create a list of price
 }
 listOfDates = listOfDates.sort(); //b-a pour l'autre sens
 
-console.log(listOfDates);
+console.log("Dates de sortie triées des plus récentes au plus anciennes",listOfDates);
 
 // 🎯 TODO 6: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
@@ -145,13 +145,15 @@ console.log(listOfDates);
 
 console.log("TODO 6 :");
 var filteredPrice = []
+let small = 50;
+let big = 100;
 for(let i = 0;i<listeOfPrices.length;i++){ //Create a list of price
-  if((listeOfPrices[i]>50) && (listeOfPrices[i]<100)){
+  if((listeOfPrices[i]>small) && (listeOfPrices[i]<big)){
     filteredPrice.push(listeOfPrices[i]);
   }
 }
 
-console.log(filteredPrice);
+console.log(`Produits avec un prix entre ${small} et ${big} € `,filteredPrice);
 
 // 🎯 TODO 7: Average price
 // 1. Determine the average price of the marketplace
@@ -190,6 +192,27 @@ console.log(`La moyenne des prix est de : ${average.toFixed(2)} € `);
 // 3. Log the number of products by brands
 
 console.log("TODO 8 :");
+const brands ={};
+var tempB;
+for (let i = 0;i<numberOfProduct;i++){
+  tempB = marketplace[i]['brand'];
+  if(tempB in brands){
+    brands[tempB].push(marketplace[i]['name']);
+  }
+  else{
+    brands[tempB] = (marketplace[i]['name']).split();
+  }
+}
+console.log("Dictionnaire des habits selon les marques",brands);
+
+const countBrands ={};
+for (const key of Object.keys(brands)){
+  countBrands[key] = 0;
+  for (const element of brands[key]) {
+    countBrands[key] +=1;
+  }
+}
+console.log("Dictionnaire du nombre d'habits par marque",countBrands);
 
 
 // 🎯 TODO 9: Sort by price for each brand
