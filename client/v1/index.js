@@ -4,6 +4,9 @@
 
 console.log('🚀 This is it.');
 
+
+console.log("----------   PARTIE I   ----------");
+
 console.log("TODO 1 Method 1:");
 const MY_FAVORITE_BRANDS = [
   {
@@ -485,6 +488,29 @@ const COTELE_PARIS = [
 // 🎯 TODO 1: New released products
 // // 1. Log if we have new products only (true or false)
 // // A new product is a product `released` less than 2 weeks.
+
+console.log("----------   PARTIE II   ----------");
+
+console.log("TODO 1 :");
+
+//Prendre le jour d'aujourd'hui et le simplifier
+var today = new Date();
+console.log("Jour d'aujourd'hui : ",today);
+
+let difference;
+let TotalDays;
+let dayReleased;
+let newReleased = 14;
+
+console.log(`Affichage des produits dont la date de sortie est inférieure à ${newReleased} jours:`);
+for(let i=0;i<COTELE_PARIS.length;i++){
+  dayReleased = new Date(COTELE_PARIS[i]['released']);
+  let difference = today.getTime() - dayReleased.getTime();
+  let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+  if(TotalDays<newReleased){
+    console.log(`${TotalDays}  jours d'écarts pour ${COTELE_PARIS[i]['name']}`);
+  }
+}
 
 // 🎯 TODO 2: Reasonable price
 // // 1. Log if coteleparis is a reasonable price shop (true or false)
