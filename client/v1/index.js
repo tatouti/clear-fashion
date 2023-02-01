@@ -583,8 +583,16 @@ let jacket = blueJacket;
 
 jacket.favorite = true;
 
+console.log("TODO 5 :");
+
 // 1. Log `blueJacket` and `jacket` variables
+
+console.log("Blue Jacket : ",blueJacket);
+console.log("Jacket : ",jacket);
+
 // 2. What do you notice?
+
+console.log("We notice that they both have the same values and are the same type, and also the blueJacket has the property Favorite");
 
 // we make a new assignment again
 blueJacket = {
@@ -600,6 +608,13 @@ blueJacket = {
 };
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
+
+console.log("After the copy and update, we have : ");
+jacket = Object.assign({}, blueJacket);
+jacket.favorite = true;
+
+console.log("Blue Jacket : ",blueJacket);
+console.log("Jacket : ",jacket);
 
 /**
  * 🎬
