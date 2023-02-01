@@ -551,11 +551,17 @@ console.log("TODO 4 :");
 var uuidNum = "2b9a47e3-ed73-52f6-8b91-379e9c8e526c";
 
 console.log(`Suppression du produit dont l'uuid est ${uuidNum} :`);
+
+var newCOTELE_PARIS = [];
 for(let i=0;i<COTELE_PARIS.length;i++){
   if(COTELE_PARIS[i]['uuid']==uuidNum){
-    console.log(`L'uuid precédent correspond à ${COTELE_PARIS[i]['name']}`);
+    console.log(`L'uuid precédent correspond à ${COTELE_PARIS[i]['name']} au rang ${i}`);
+    newCOTELE_PARIS = COTELE_PARIS.splice(i, 1);
+    console.log("Suppression réussie ! ");
   }
 }
+
+console.log(COTELE_PARIS);
 
 // 🎯 TODO 5: Save the favorite product
 // We declare and assign a variable called `blueJacket`
