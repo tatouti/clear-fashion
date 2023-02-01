@@ -3,11 +3,11 @@
 'use strict';
 
 console.log('🚀 This is it.');
+console.log('🚀 THEO JAOUDET 🚀');
 
 
 console.log("----------   PARTIE I   ----------");
 
-console.log("TODO 1 Method 1:");
 const MY_FAVORITE_BRANDS = [
   {
     'name': 'Faguo',
@@ -22,19 +22,7 @@ const MY_FAVORITE_BRANDS = [
     'url': 'https://ecclo.fr/'
   }
 ];
-console.table(MY_FAVORITE_BRANDS);
-var dico = {'https://www.faguo-store.com/fr/vetements/7606-arcy-t-shirt-en-coton-recycle-kaki.html':'17.50€',
-'https://www.loom.fr/collections/t-shirts-polos/products/le-t-shirt-homme':'25€',
-'https://ecclo.fr/products/t-shirt-noir-boycott-world-cup-2022':'19€'
-};
-
-for (let i = 0; i < MY_FAVORITE_BRANDS.length; i++) {
-    var [key, value] = Object.entries(dico)[i];
-    MY_FAVORITE_BRANDS[i].cheapest = key;
-    MY_FAVORITE_BRANDS[i].price = value;   
-}
-
-console.table(MY_FAVORITE_BRANDS);
+console.table("My favorite brands table :",MY_FAVORITE_BRANDS);
 
 /**
  * 🌱
@@ -49,7 +37,7 @@ console.table(MY_FAVORITE_BRANDS);
 // I can find on these e-shops
 // 2. Log the variable
 
-console.log("TODO 1 Method 2:")
+console.log("TODO 1 Method 1:")
 var cheapest = [
   {
     'url':'https://www.faguo-store.com/fr/vetements/7606-arcy-t-shirt-en-coton-recycle-kaki.html', 
@@ -64,12 +52,12 @@ var cheapest = [
     'price':19
   }
 ];
-console.table(cheapest);
+console.table("Cheapest table : ",cheapest);
 
 for (let i = 0; i < MY_FAVORITE_BRANDS.length ; i++) {
   MY_FAVORITE_BRANDS[i]['cheapest'] = cheapest[i];
 }
-console.table(MY_FAVORITE_BRANDS)
+console.table("My new favorite brands table :",MY_FAVORITE_BRANDS);
 
 let cheapPrice = 100;
 var url = 'url';
@@ -82,6 +70,26 @@ for (let i = 0; i < MY_FAVORITE_BRANDS.length ; i++) {
 
 console.log('Le prix le plus bas est : ' + cheapPrice + " et son url est : "+url);
 
+
+/*
+console.log("TODO 1 Method 2:");
+
+var dico = {'https://www.faguo-store.com/fr/vetements/7606-arcy-t-shirt-en-coton-recycle-kaki.html':'17.50€',
+'https://www.loom.fr/collections/t-shirts-polos/products/le-t-shirt-homme':'25€',
+'https://ecclo.fr/products/t-shirt-noir-boycott-world-cup-2022':'19€'
+};
+
+for (let i = 0; i < MY_FAVORITE_BRANDS.length; i++) {
+    var [key, value] = Object.entries(dico)[i];
+    MY_FAVORITE_BRANDS[i].cheapest = key;
+    MY_FAVORITE_BRANDS[i].price = value;   
+}
+
+console.table(MY_FAVORITE_BRANDS);
+*/
+
+
+
 /**
  * 👕
  * Easy 😁?
@@ -91,7 +99,7 @@ console.log('Le prix le plus bas est : ' + cheapPrice + " et son url est : "+url
  * 👕
  */
 
-console.log(marketplace);
+console.log("Marketplace : ",marketplace);
 
 // 🎯 TODO 2: Number of products
 // 1. Create a variable and assign it the number of products
@@ -99,7 +107,7 @@ console.log(marketplace);
 
 console.log("TODO 2 :");
 const numberOfProduct = marketplace.length;
-console.log(numberOfProduct);
+console.log("Number of products in the marketplace : ",numberOfProduct);
 
 // 🎯 TODO 3: Brands name
 // 1. Create a variable and assign it the list of brands name only
@@ -625,3 +633,24 @@ console.log("Jacket : ",jacket);
 // 🎯 LAST TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
+
+console.log("LAST TODO :");
+
+localStorage.clear(); //Clear local storage
+
+for(let i=0;i<MY_FAVORITE_BRANDS.length;i++){
+  localStorage.setItem(MY_FAVORITE_BRANDS[i]['name'], [MY_FAVORITE_BRANDS[i]['url'],MY_FAVORITE_BRANDS[i]['price'],MY_FAVORITE_BRANDS[i]['cheapest']['url'],MY_FAVORITE_BRANDS[i]['cheapest']['price']]);
+}
+
+console.log("My favorite brands object : ",MY_FAVORITE_BRANDS);
+console.log("Local storage  : ",localStorage);
+
+var keyName;
+for(const key of Object.keys(MY_FAVORITE_BRANDS)){
+  keyName = MY_FAVORITE_BRANDS[key]['name'];
+  console.log(`Get local storage for ${keyName} : `,localStorage.getItem(keyName.toString()));
+}
+
+console.table(localStorage);
+
+console.log("----------   FIN   ----------");
