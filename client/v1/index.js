@@ -546,6 +546,17 @@ for(let i=0;i<COTELE_PARIS.length;i++){
 // 1. Delete the product with the uuid `2b9a47e3-ed73-52f6-8b91-379e9c8e526c`
 // 2. Log the new list of product
 
+console.log("TODO 4 :");
+
+var uuidNum = "2b9a47e3-ed73-52f6-8b91-379e9c8e526c";
+
+console.log(`Suppression du produit dont l'uuid est ${uuidNum} :`);
+for(let i=0;i<COTELE_PARIS.length;i++){
+  if(COTELE_PARIS[i]['uuid']==uuidNum){
+    console.log(`L'uuid precédent correspond à ${COTELE_PARIS[i]['name']}`);
+  }
+}
+
 // 🎯 TODO 5: Save the favorite product
 // We declare and assign a variable called `blueJacket`
 let blueJacket = {
