@@ -26,6 +26,7 @@ const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
+const selectBrand = document.querySelector('#brand-select');
 
 /**
  * Set global value
@@ -132,13 +133,27 @@ selectShow.addEventListener('change', async (event) => {
   render(currentProducts, currentPagination);
 });
 
-/*
+/**
+ * Select the page of products to display
+ */
 selectPage.addEventListener('change', async (event) => {
-  const products = await fetchProducts(parseInt(event.target.value),currentPagination.size);
+  const products = await fetchProducts(parseInt(event.target.value),currentPagination.pageSize);
 
   setCurrentProducts(products);
   render(currentProducts, currentPagination);
-});*/
+});
+
+/**
+ * Select the brand of products to display
+ */
+selectBrand.addEventListener('change', async (event) => {
+  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+
+  console.log(products.brand);
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
 
 document.addEventListener('DOMContentLoaded', async () => {
   const products = await fetchProducts();
