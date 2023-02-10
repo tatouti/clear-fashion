@@ -148,10 +148,19 @@ selectPage.addEventListener('change', async (event) => {
  */
 selectBrand.addEventListener('change', async (event) => {
   const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+  console.log(products.brand)
+  var marque = event.target.value;
+  console.log(marque);
+  let listeOfPdts=[];
+  for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
+    console.log('ouiuiui')
+    if(products[i].brand=='coteleparis'){
+      console.log(products[i]);
+      listeOfPdts.push(products[i]);
+    }
+  }
 
-  console.log(products.brand);
-
-  setCurrentProducts(products);
+  setCurrentProducts(listeOfPdts);
   render(currentProducts, currentPagination);
 });
 
