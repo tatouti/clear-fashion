@@ -27,7 +27,8 @@ const selectPage = document.querySelector('#page-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const selectBrand = document.querySelector('#brand-select');
-const selectPrice = document.querySelector('#price-select')
+const selectPrice = document.querySelector('#price-select');
+const selectRecently = document.querySelector('#recently-select');
 
 /**
  * Set global value
@@ -173,6 +174,7 @@ selectBrand.addEventListener('change', async (event) => {
 selectPrice.addEventListener('change', async (event) => {
   const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
   var price = event.target.value;
+  console.log(products)
   let listeOfPdts=[];
   for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
     if(price!='all'){
@@ -184,6 +186,32 @@ selectPrice.addEventListener('change', async (event) => {
       listeOfPdts.push(products['result'][i]);
     }
   }
+  products['result']=listeOfPdts;
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+selectRecently.addEventListener('change', async (event) => {
+  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+  var today = new Date();
+  console.log(products)
+  let difference;
+  let TotalDays;
+  let dayReleased;
+  let newReleased = event.target.value;
+
+  console.log(`Affichage des produits dont la date de sortie est inférieure à ${newReleased} jours:`);
+  let listeOfPdts=[];
+  for(let i=0;i<currentPagination.pageSize;i++){
+    dayReleased = new Date(products['result'][i]['released']);
+    let difference = today.getTime() - dayReleased.getTime();
+    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+    if(TotalDays<newReleased){
+      listeOfPdts.push(products['result'][i]);
+    }
+  }
+
   products['result']=listeOfPdts;
 
   setCurrentProducts(products);
