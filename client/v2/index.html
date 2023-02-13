@@ -20,6 +20,14 @@
         <select name="page" id="page-select"> </select>
       </div>
       <div id="filters">
+        <div id="brand">
+          <label for="brand-select">By brands:</label>
+          <select name="brand" id="brand-select"> 
+            <option value="all">All</option> 
+            <option value="coteleparis">coteleparis</option>
+            <option value="dedicated">dedicated</option>
+          </select>
+        </div>
         <div id="reasonable">
           <label for="price-select">By reasonable price:</label>
           <select name="price" id="price-select"> 
@@ -30,14 +38,15 @@
             <option value="100">100€</option>
           </select>
         </div>
-
-        <span>By recently released</span>
-        <div id="brand">
-          <label for="brand-select">By brands:</label>
-          <select name="brand" id="brand-select"> 
-            <option value="all">All</option> 
-            <option value="coteleparis">coteleparis</option>
-            <option value="dedicated">dedicated</option>
+        <div id="recently">
+          <label for="recently-select">By recently released:</label>
+          <select name="recently" id="recently-select"> 
+            <option value="1000">All</option> 
+            <option value="7">One week</option> 
+            <option value="14">Two weeks</option>
+            <option value="21">Three weeks</option>
+            <option value="31">One month</option>
+            <option value="62">Two months</option>
           </select>
         </div>
       </div>
