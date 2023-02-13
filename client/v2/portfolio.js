@@ -27,6 +27,7 @@ const selectPage = document.querySelector('#page-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const selectBrand = document.querySelector('#brand-select');
+const selectPrice = document.querySelector('#price-select')
 
 /**
  * Set global value
@@ -149,11 +150,33 @@ selectPage.addEventListener('change', async (event) => {
 selectBrand.addEventListener('change', async (event) => {
   const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
   var marque = event.target.value;
-  console.log(marque);
   let listeOfPdts=[];
   for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
     if(marque!='all'){
       if(products['result'][i]['brand']==marque){
+        listeOfPdts.push(products['result'][i]);
+      }
+    }
+    else{
+      listeOfPdts.push(products['result'][i]);
+    }
+  }
+  products['result']=listeOfPdts;
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+/**
+ * Select the price of products to display
+ */
+selectPrice.addEventListener('change', async (event) => {
+  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+  var price = event.target.value;
+  let listeOfPdts=[];
+  for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
+    if(price!='all'){
+      if(products['result'][i]['price']<=price){
         listeOfPdts.push(products['result'][i]);
       }
     }
