@@ -152,7 +152,12 @@ selectBrand.addEventListener('change', async (event) => {
   console.log(marque);
   let listeOfPdts=[];
   for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
-    if(products['result'][i]['brand']==marque){
+    if(marque!='all'){
+      if(products['result'][i]['brand']==marque){
+        listeOfPdts.push(products['result'][i]);
+      }
+    }
+    else{
       listeOfPdts.push(products['result'][i]);
     }
   }
