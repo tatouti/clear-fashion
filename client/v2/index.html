@@ -20,7 +20,17 @@
         <select name="page" id="page-select"> </select>
       </div>
       <div id="filters">
-        <span>By reasonable price</span>
+        <div id="reasonable">
+          <label for="price-select">By reasonable price:</label>
+          <select name="price" id="price-select"> 
+            <option value="all">All</option> 
+            <option value="25">25€</option> 
+            <option value="50">50€</option>
+            <option value="75">75€</option>
+            <option value="100">100€</option>
+          </select>
+        </div>
+
         <span>By recently released</span>
         <div id="brand">
           <label for="brand-select">By brands:</label>
