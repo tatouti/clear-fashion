@@ -29,6 +29,7 @@ const spanNbProducts = document.querySelector('#nbProducts');
 const selectBrand = document.querySelector('#brand-select');
 const selectPrice = document.querySelector('#price-select');
 const selectRecently = document.querySelector('#recently-select');
+const selectSort = document.querySelector('#sort-select');
 
 /**
  * Set global value
@@ -192,6 +193,9 @@ selectPrice.addEventListener('change', async (event) => {
   render(currentProducts, currentPagination);
 });
 
+/**
+ * Select the released date of products to display
+ */
 selectRecently.addEventListener('change', async (event) => {
   const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
   var today = new Date();
@@ -212,6 +216,49 @@ selectRecently.addEventListener('change', async (event) => {
     }
   }
 
+  products['result']=listeOfPdts;
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+/**
+ * Select the sort to display
+ */
+selectSort.addEventListener('change', async (event) => {
+  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
+  var sortType = event.target.value;
+  let listeOfPdts=[];
+
+  if(sortType!='none'){
+    let tempDict = products['result'];
+
+    if(sortType=='price-asc'){
+      listeOfPdts = tempDict.sort(function(first, second) {
+        return first['price'] - second['price'];
+      });
+    }
+    else if(sortType=='price-desc'){
+      listeOfPdts = tempDict.sort(function(first, second) {
+        return second['price'] - first['price'];
+      });
+    }
+    else if(sortType=='date-asc'){
+      listeOfPdts = tempDict.sort(function(first, second) {
+        return first['released'] - second['released'];
+      });
+    }
+    else if(sortType=='date-desc'){
+      listeOfPdts = tempDict.sort(function(first, second) {
+        return second['released'] - first['released'];
+      });
+    }
+
+  }
+  else{
+    listeOfPdts = products['result'];
+  }
+  
   products['result']=listeOfPdts;
 
   setCurrentProducts(products);
