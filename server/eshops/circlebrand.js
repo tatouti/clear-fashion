@@ -11,19 +11,23 @@ const parse = data => {
   
   return $('.product-grid-container .grid__item')
     .map((i, element) => {
-      const name = $(element)
+      var name = $(element)
         .find('.full-unstyled-link')
         .text()
-        .trim();
+        .trim()
+        .split('\n');
+      name = name[0];
       const price = parseInt(
         $(element)
           .find('.price .money')
           .text()
       );
-      const caracteristique = $(element)
+      var caracteristique = $(element)
         .find('.card__characteristic')
         .text()
         .trim();
+      var l = caracteristique.length/2;
+      caracteristique = caracteristique.slice(0,l);
 
       return {caracteristique,name, price};
     })
