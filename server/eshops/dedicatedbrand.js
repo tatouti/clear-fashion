@@ -8,7 +8,7 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-  
+  console.log("Showing for Dedicated");
   return $('.productList-container .productList')
     .map((i, element) => {
       const name = $(element)
