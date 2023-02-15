@@ -12,16 +12,16 @@ const parse = data => {
   return $('.product-grid-container .grid__item')
     .map((i, element) => {
       const name = $(element)
-        .find('.card__heading h5')
+        .find('.full-unstyled-link')
         .text()
         .trim();
       const price = parseInt(
         $(element)
-          .find('.price-item price-item--regular')
+          .find('.price .money')
           .text()
       );
       const caracteristique = $(element)
-        .find('.card__heading h5')
+        .find('.card__characteristic')
         .text()
         .trim();
 
