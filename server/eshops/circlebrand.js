@@ -8,7 +8,7 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-  
+  console.log("Showing for Circle Sportswear");
   return $('.product-grid-container .grid__item')
     .map((i, element) => {
       var name = $(element)
