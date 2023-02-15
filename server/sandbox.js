@@ -5,7 +5,7 @@ const circlebrand = require('./eshops/circlebrand');
 
 async function sandboxD (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   try {
-    console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
+    console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
     const products = await dedicatedbrand.scrape(eshop);
 
@@ -20,7 +20,7 @@ async function sandboxD (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
 
 async function sandboxM (eshop = 'https://www.montlimart.com/99-vetements') {
   try {
-    console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
+    console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
     const products = await montlimartbrand.scrape(eshop);
 
@@ -35,7 +35,7 @@ async function sandboxM (eshop = 'https://www.montlimart.com/99-vetements') {
 
 async function sandboxC (eshop = 'https://shop.circlesportswear.com/collections/collection-homme') {
   try {
-    console.log(`🕵️‍♀️  browsing ${eshop} eshop`);
+    console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
     const products = await circlebrand.scrape(eshop);
 
