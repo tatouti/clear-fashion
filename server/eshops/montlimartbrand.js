@@ -9,7 +9,7 @@ const cheerio = require('cheerio');
 const parse = data => {
   const $ = cheerio.load(data);
 
-  return $('products-list row')
+  return $('.products-list row .products-list__block products-list__block--col-6--col-12')
     .map((i, element) => {
       const name = $(element)
         .find('.product-miniature__title')
