@@ -8,25 +8,22 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-
-  return $('.products-list row .products-list__block products-list__block--grid')
+  console.log("Showing for Montlimard");
+  return $('.js-product-list .products-list__block products-list__block--grid')
     .map((i, element) => {
       const name = $(element)
         .find('.product-miniature__title')
         .text()
         .trim();
       console.log(name);
-      const price = parseInt(
-        $(element)
-          .find('.product-miniature__pricing')
-          .text()
-      );
-      console.log(price);
+      const price = $(element)
+        .find('.price')
+        .text()
+        .trim();
       const color = $(element)
         .find('.product-miniature__color')
         .text()
         .trim();
-      console.log(color);
       return {name,color,price};
     })
     .get();
