@@ -17,17 +17,16 @@ const parse = data => {
         .trim()
         .split('\n');
       name = name[0];
-      const price = parseInt(
-        $(element)
-          .find('.price .money')
-          .text()
-      );
+      var price = $(element)
+      .find('.money')
+      .text()
+      .trim();
+      price = price.slice(1,price.length/2);
       var caracteristique = $(element)
         .find('.card__characteristic')
         .text()
         .trim();
-      var l = caracteristique.length/2;
-      caracteristique = caracteristique.slice(0,l);
+      caracteristique = caracteristique.slice(0,caracteristique.length/2);
 
       return {caracteristique,name, price};
     })
