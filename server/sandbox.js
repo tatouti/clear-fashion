@@ -1,7 +1,7 @@
 /* eslint-disable no-console, no-process-exit */
 const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
-const circlebrand = require('./eshops/circledbrand');
+const circlebrand = require('./eshops/circlebrand');
 
 async function sandboxD (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   try {
@@ -51,6 +51,6 @@ async function sandboxC (eshop = 'https://shop.circlesportswear.com/collections/
 const [,, eshop] = process.argv;
 
 //sandbox(eshop);
-sandboxM(eshop);
+sandboxC(eshop);
 
 
