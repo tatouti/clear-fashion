@@ -50,7 +50,8 @@ async function sandboxC (eshop = 'https://shop.circlesportswear.com/collections/
 
 const [,, eshop] = process.argv;
 
-//sandbox(eshop);
-sandboxC(eshop);
+//sandboxD(eshop);
+sandboxM(eshop);
+//sandboxC(eshop);
 
 
