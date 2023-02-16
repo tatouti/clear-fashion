@@ -2,44 +2,56 @@
 const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlebrand = require('./eshops/circlebrand');
+const { json } = require('express');
+const fs = require('fs');
 
-async function sandboxD (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
+async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   try {
     console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
-    const products = await dedicatedbrand.scrape(eshop);
+    var products = await dedicatedbrand.scrape(eshop);
 
     console.log(products);
+    var jsonData = JSON.stringify(products);
+    fs.writeFileSync('./jsonFiles/dedicated.json', jsonData, err => {
+      if (err) {
+          console.log('Error writing file', err)
+      } else {
+          console.log('Successfully wrote file')
+      }
+    })
     console.log('done');
-    process.exit(0);
-  } catch (e) {
-    console.error(e);
-    process.exit(1);
-  }
-}
 
-async function sandboxM (eshop = 'https://www.montlimart.com/99-vetements') {
-  try {
+    eshop = "https://www.montlimart.com/99-vetements";
     console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
-    const products = await montlimartbrand.scrape(eshop);
+    products = await montlimartbrand.scrape(eshop);
 
     console.log(products);
+    jsonData = JSON.stringify(products);
+    fs.writeFileSync('./jsonFiles/montlimart.json', jsonData, err => {
+      if (err) {
+          console.log('Error writing file', err)
+      } else {
+          console.log('Successfully wrote file')
+      }
+    })
     console.log('done');
-    process.exit(0);
-  } catch (e) {
-    console.error(e);
-    process.exit(1);
-  }
-}
 
-async function sandboxC (eshop = 'https://shop.circlesportswear.com/collections/collection-homme') {
-  try {
+    eshop = "https://shop.circlesportswear.com/collections/collection-homme";
     console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
-    const products = await circlebrand.scrape(eshop);
+    products = await circlebrand.scrape(eshop);
 
     console.log(products);
+    jsonData = JSON.stringify(products);
+    fs.writeFileSync('./jsonFiles/circle.json', jsonData, err => {
+      if (err) {
+          console.log('Error writing file', err)
+      } else {
+          console.log('Successfully wrote file')
+      }
+    })
     console.log('done');
     process.exit(0);
   } catch (e) {
@@ -50,8 +62,4 @@ async function sandboxC (eshop = 'https://shop.circlesportswear.com/collections/
 
 const [,, eshop] = process.argv;
 
-//sandboxD(eshop);
-sandboxM(eshop);
-//sandboxC(eshop);
-
-
+sandbox(eshop);
