@@ -9,13 +9,12 @@ const cheerio = require('cheerio');
 const parse = data => {
   const $ = cheerio.load(data);
   console.log("Showing for Montlimard");
-  return $('.js-product-list .products-list__block products-list__block--grid')
+  return $('.products-list .products-list__block*')
     .map((i, element) => {
       const name = $(element)
-        .find('.product-miniature__title')
+        .find('.text-reset')
         .text()
         .trim();
-      console.log(name);
       const price = $(element)
         .find('.price')
         .text()
