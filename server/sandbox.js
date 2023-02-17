@@ -67,11 +67,11 @@ async function mongodbAdd (products){
     const MONGODB_URI = 'mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test';
     const MONGODB_DB_NAME = 'ClusterClearFashion';
     const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+    const db =  client.db(MONGODB_DB_NAME);
     const collection = db.collection('products');
     const result = collection.insertMany(products);
-    const db =  client.db(MONGODB_DB_NAME);
     console.log(result);
-
+    process.exit(0);
 
 }
 
@@ -80,5 +80,5 @@ const [,, eshop] = process.argv;
 
 //sandbox(eshop);
 
-const val = {'nom':'JAOUDET','prenom':'Theo'};
+const val = [{'nom':'JAOUDET','prenom':'Theo'}];
 mongodbAdd(val);
