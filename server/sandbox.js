@@ -61,7 +61,7 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
 }
 
 async function mongodbAdd (products){
-  try{
+
     console.log('Mongo DB Server Part');
     const {MongoClient} = require('mongodb');
     const MONGODB_URI = 'mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test';
@@ -71,10 +71,7 @@ async function mongodbAdd (products){
     const result = collection.insertMany(products);
     const db =  client.db(MONGODB_DB_NAME);
     console.log(result);
-    }
-    catch(e){
-      console.log('Error in the monogDB part')
-    }
+
 
 }
 
