@@ -64,9 +64,11 @@ async function mongodbAdd (products){
   try{
     console.log('Mongo DB Server Part');
     const {MongoClient} = require('mongodb');
-    const MONGODB_URI = 'mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&writeConcern=majority';
-    const MONGODB_DB_NAME = 'clearfashion';
+    const MONGODB_URI = 'mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test';
+    const MONGODB_DB_NAME = 'ClusterClearFashion';
     const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+    const collection = db.collection('products');
+    const result = collection.insertMany(products);
     const db =  client.db(MONGODB_DB_NAME);
     console.log(result);
     }
