@@ -60,6 +60,26 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   }
 }
 
+async function mongodbAdd (products){
+  try{
+    console.log('Mongo DB Server Part');
+    const {MongoClient} = require('mongodb');
+    const MONGODB_URI = 'mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&writeConcern=majority';
+    const MONGODB_DB_NAME = 'clearfashion';
+    const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
+    const db =  client.db(MONGODB_DB_NAME);
+    console.log(result);
+    }
+    catch(e){
+      console.log('Error in the monogDB part')
+    }
+
+}
+
 const [,, eshop] = process.argv;
 
-sandbox(eshop);
+
+//sandbox(eshop);
+
+const val = {'nom':'JAOUDET','prenom':'Theo'};
+mongodbAdd(val);
