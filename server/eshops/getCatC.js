@@ -10,7 +10,7 @@ const cheerio = require('cheerio');
 const parse = data => {
   const $ = cheerio.load(data);
   console.log("Showing categories");
-  return $('.header__inline-menu .Details-HeaderMenu* .mega-menu__list*')
+  return $('.list-menu* .header__menu-item*')
     .map((i, element) => {
       var category = $(element)
       .find('a')
