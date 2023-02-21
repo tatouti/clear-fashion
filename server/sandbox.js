@@ -77,7 +77,7 @@ async function testCategories (link='https://www.dedicatedbrand.com/en/men' ){
 
   console.log('Test des categories');
 
-  const cat = await testCat.scrape();
+  const cat = await testCat.scrape(link);
 
   console.log(cat);
   process.exit(0);
