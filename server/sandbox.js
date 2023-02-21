@@ -2,7 +2,7 @@
 const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlebrand = require('./eshops/circlebrand');
-const testCat = require('./eshops/testCat');
+const getCatD = require('./eshops/getCatD');
 const { json } = require('express');
 const fs = require('fs');
 
@@ -73,15 +73,11 @@ async function allWebsites(links=[]){
   }
 }
 
-async function testCategories (link='https://www.dedicatedbrand.com/en/men' ){
+async function testCategories (link='https://www.dedicatedbrand.com/en/men'){
 
-  console.log('Test des categories');
-
-  const cat = await testCat.scrape(link);
-
-  console.log(cat);
-  process.exit(0);
-
+  console.log('Affichage des categories');
+  const cat = await getCatD.scrape(link);
+  console.log(cat[0]);
 }
 
 const li = ['https://www.dedicatedbrand.com/en/men','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
