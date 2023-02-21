@@ -40,12 +40,12 @@ async function allWebsites(links=[]){
     for(let i=0;i<links.length;i++){
       var eshop = links[i];
       var products = {};
-      var persoCategories =[];
-      if(eshop=='https://www.dedicatedbrand.com/en/men'){
+      var persoCategories = [];
+      if(eshop=='https://www.dedicatedbrand.com/en/'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
-        //persoCategories = ['allMen','news','t-shirts','basics','']
+        persoCategories = getCategories(eshop);
         products = await dedicatedbrand.scrape(eshop);
-        writeFile(await products,"dedicated");
+        writeFile(products,"dedicated");
         //console.log(products);
         console.log('Done Dedicated');
       }
@@ -73,16 +73,16 @@ async function allWebsites(links=[]){
   }
 }
 
-async function testCategories (link='https://www.dedicatedbrand.com/en/men'){
-
+async function getCategories (link='https://www.dedicatedbrand.com/en/'){
   console.log('Affichage des categories');
-  const cat = await getCatD.scrape(link);
-  console.log(cat[0]);
+  var cat = await getCatD.scrape(link);
+  cat = cat.slice(0,cat.length-6); //Get only the products and not the infos of the company
+  console.log(cat);
 }
 
-const li = ['https://www.dedicatedbrand.com/en/men','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
+const li = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
 //allWebsites(li);
-testCategories();
+getCategories();
 
 
 
