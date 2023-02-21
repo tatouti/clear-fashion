@@ -49,12 +49,10 @@ async function allWebsites(links=[]){
           var newLink = eshop + persoCategories[c];
           console.log(`🕵️‍♀️  Browsing ${newLink} category`);
           products = await dedicatedbrand.scrape(newLink);
-          console.log(products.length);
           finalProducts = finalProducts.concat(products);
-          console.log(finalProducts.length);
         }
+        console.log(finalProducts.length," products for Dedicated");
         writeFile(finalProducts,"dedicated");
-        console.log(finalProducts);
         console.log('Done Dedicated');
       }
       else if(eshop=='https://www.montlimart.com/99-vetements'){
@@ -82,7 +80,6 @@ async function allWebsites(links=[]){
 }
 
 async function getCategories (link='https://www.dedicatedbrand.com/en/'){
-  //console.log('Affichage des categories');
   var cat = await getCatD.scrape(link);
   cat = cat.slice(0,cat.length-6); //Get only the products and not the infos of the company
   return cat;
