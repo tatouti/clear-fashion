@@ -2,15 +2,13 @@
 const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlebrand = require('./eshops/circlebrand');
+const testCat = require('./eshops/testCat');
 const { json } = require('express');
 const fs = require('fs');
 
 async function writeFile(products,nameFile){
   jsonData = JSON.stringify(products);
-  const a1 = './jsonFiles/';
-  var a2 = nameFile;
-  const a3 = '.json';
-  var path = a1+a2+a3;
+  var path = `./jsonFiles/${nameFile}.json`;
     fs.writeFileSync(path, jsonData, err => {
       if (err) {
           console.log('Error writing file', err)
@@ -42,8 +40,10 @@ async function allWebsites(links=[]){
     for(let i=0;i<links.length;i++){
       var eshop = links[i];
       var products = {};
-      if(eshop=='https://www.dedicatedbrand.com/en/men/news'){
+      var persoCategories =[];
+      if(eshop=='https://www.dedicatedbrand.com/en/men'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
+        //persoCategories = ['allMen','news','t-shirts','basics','']
         products = await dedicatedbrand.scrape(eshop);
         writeFile(await products,"dedicated");
         //console.log(products);
@@ -73,8 +73,21 @@ async function allWebsites(links=[]){
   }
 }
 
-const li = ['https://www.dedicatedbrand.com/en/men/news','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
-allWebsites(li);
+async function testCategories (link='https://www.dedicatedbrand.com/en/men' ){
+
+  console.log('Test des categories');
+
+  const cat = await testCat.scrape();
+
+  console.log(cat);
+  process.exit(0);
+
+}
+
+const li = ['https://www.dedicatedbrand.com/en/men','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
+//allWebsites(li);
+testCategories();
+
 
 
 const val = [{'nom':'JAOUDET','prenom':'Theo'}];
