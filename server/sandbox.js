@@ -3,6 +3,8 @@ const dedicatedbrand = require('./eshops/dedicatedbrand');
 const montlimartbrand = require('./eshops/montlimartbrand');
 const circlebrand = require('./eshops/circlebrand');
 const getCatD = require('./eshops/getCatD');
+const getCatM = require('./eshops/getCatM');
+const getCatC = require('./eshops/getCatC');
 const { json } = require('express');
 const fs = require('fs');
 
@@ -42,11 +44,17 @@ async function allWebsites(links=[]){
       var products = {};
       var finalProducts = [];
       var persoCategories = [];
+      var cat =[];
+      var newLink ='';
+
       if(eshop=='https://www.dedicatedbrand.com/en/'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
-        persoCategories = await getCategories(eshop);
+
+        cat = await getCatD.scrape(eshop);
+        persoCategories = cat.slice(0,cat.length-6); //Get only the products and not the infos of the company
+
         for(let c=0;c<persoCategories.length;c++){
-          var newLink = eshop + persoCategories[c];
+          newLink = eshop + persoCategories[c];
           console.log(`🕵️‍♀️  Browsing ${newLink} category`);
           products = await dedicatedbrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
@@ -57,15 +65,33 @@ async function allWebsites(links=[]){
       }
       else if(eshop=='https://www.montlimart.com/99-vetements'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
-        products = await montlimartbrand.scrape(eshop);
-        //console.log(products);
+
+        cat = await getCatM.scrape(eshop);
+        persoCategories = cat.slice(0,cat.length-6);
+
+        for(let c=0;c<persoCategories.length;c++){
+          newLink = eshop + persoCategories[c];
+          console.log(`🕵️‍♀️  Browsing ${newLink} category`);
+          products = await montlimartbrand.scrape(newLink);
+          finalProducts = finalProducts.concat(products);
+        }
+        console.log(finalProducts.length," products for Montlimart");
         writeFile(await products,"montlimart");
         console.log('Done Montlimart');
       }
       else if(eshop=='https://shop.circlesportswear.com/collections/collection-homme'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
-        products = await circlebrand.scrape(eshop);
-        //console.log(products);
+
+        cat = await getCatC.scrape(eshop);
+        persoCategories = cat.slice(0,cat.length-6);
+
+        for(let c=0;c<persoCategories.length;c++){
+          newLink = eshop + persoCategories[c];
+          console.log(`🕵️‍♀️  Browsing ${newLink} category`);
+          products = await circlebrand.scrape(newLink);
+          finalProducts = finalProducts.concat(products);
+        }
+        console.log(finalProducts.length," products for CircleSportsWear");
         writeFile(await products,"circle");
         console.log('Done CircleSporstwear');
       }
@@ -77,12 +103,6 @@ async function allWebsites(links=[]){
     console.error(e);
     process.exit(1);
   }
-}
-
-async function getCategories (link='https://www.dedicatedbrand.com/en/'){
-  var cat = await getCatD.scrape(link);
-  cat = cat.slice(0,cat.length-6); //Get only the products and not the infos of the company
-  return cat;
 }
 
 const li = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
