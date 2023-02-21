@@ -12,6 +12,7 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     var products = await dedicatedbrand.scrape(eshop);
 
     console.log(products);
+    console.log(products.length);
     var jsonData = JSON.stringify(products);
     fs.writeFileSync('./jsonFiles/dedicated.json', jsonData, err => {
       if (err) {
@@ -28,6 +29,7 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     products = await montlimartbrand.scrape(eshop);
 
     console.log(products);
+    console.log(products.length);
     jsonData = JSON.stringify(products);
     fs.writeFileSync('./jsonFiles/montlimart.json', jsonData, err => {
       if (err) {
@@ -44,6 +46,8 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     products = await circlebrand.scrape(eshop);
 
     console.log(products);
+    console.log(products.length);
+    /*
     jsonData = JSON.stringify(products);
     fs.writeFileSync('./jsonFiles/circle.json', jsonData, err => {
       if (err) {
@@ -54,6 +58,7 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
     })
     console.log('done');
     process.exit(0);
+    */
   } catch (e) {
     console.error(e);
     process.exit(1);
@@ -78,7 +83,7 @@ async function mongodbAdd (products){
 const [,, eshop] = process.argv;
 
 
-//sandbox(eshop);
+sandbox(eshop);
 
 const val = [{'nom':'JAOUDET','prenom':'Theo'}];
-mongodbAdd(val);
+//mongodbAdd(val);
