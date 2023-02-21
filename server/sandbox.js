@@ -40,16 +40,18 @@ async function allWebsites(links=[]){
     for(let i=0;i<links.length;i++){
       var eshop = links[i];
       var products = {};
-      var finalProducts = {};
+      var finalProducts = [];
       var persoCategories = [];
       if(eshop=='https://www.dedicatedbrand.com/en/'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
         persoCategories = await getCategories(eshop);
         for(let c=0;c<persoCategories.length;c++){
           var newLink = eshop + persoCategories[c];
-          console.log(newLink);
-          products = await dedicatedbrand.scrape(eshop);
-          finalProducts = Object.assign({}, finalProducts, products);
+          console.log(`🕵️‍♀️  Browsing ${newLink} category`);
+          products = await dedicatedbrand.scrape(newLink);
+          console.log(products.length);
+          finalProducts = finalProducts.concat(products);
+          console.log(finalProducts.length);
         }
         writeFile(finalProducts,"dedicated");
         console.log(finalProducts);
