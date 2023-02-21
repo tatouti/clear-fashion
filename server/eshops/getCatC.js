@@ -15,8 +15,6 @@ const parse = data => {
       var category = $(element)
       .find('a')
       .prop("href");
-      //category = category.slice(4);
-      console.log(category);
       return [category];
     })
     .get();
