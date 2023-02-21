@@ -65,6 +65,22 @@ async function sandbox (eshop = 'https://www.dedicatedbrand.com/en/men/news') {
   }
 }
 
+async function writeFile(products,nameFile){
+  jsonData = JSON.stringify(products);
+  const a1 = './jsonFiles/';
+  var a2 = nameFile;
+  const a3 = '.json';
+  var path = a1+a2+a3;
+    fs.writeFileSync(path, jsonData, err => {
+      if (err) {
+          console.log('Error writing file', err)
+      } else {
+          console.log('Successfully wrote file')
+      }
+    })
+    console.log('done');
+}
+
 async function mongodbAdd (products){
 
     console.log('Mongo DB Server Part');
@@ -125,20 +141,45 @@ async function sandboxC (eshop = 'https://shop.circlesportswear.com/collections/
   }
 }
 
-async function AllScrape(){
+async function allWebsites(links=[]){
   try{
-    await sandboxD(eshop);
-    await sandboxM(eshop);
-    await sandboxC(eshop);
-    console.log('ALL GOOD');
+    for(let i=0;i<links.length;i++){
+      var eshop = links[i];
+      var products = {};
+      if(eshop=='https://www.dedicatedbrand.com/en/men/news'){
+        console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
+        products = await dedicatedbrand.scrape(eshop);
+        writeFile(products,"dedicated");
+        //console.log(products);
+        console.log('Done Dedicated');
+      }
+      else if(eshop=='https://www.montlimart.com/99-vetements'){
+        console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
+        products = await montlimartbrand.scrape(eshop);
+        //console.log(products);
+        writeFile(products,"montlimart");
+        console.log('Done Montlimart');
+      }
+      else if(eshop=='https://shop.circlesportswear.com/collections/collection-homme'){
+        console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
+        products = await circlebrand.scrape(eshop);
+        //console.log(products);
+        writeFile(products,"circle");
+        console.log('Done CircleSporstwear');
+      }
+    }
+    console.log('Done ALL');
     process.exit(0);
-  } catch(e){
+  }
+  catch(e){
     console.error(e);
     process.exit(1);
   }
 }
 
-AllScrape();
+//AllScrape();
+const li = ['https://www.dedicatedbrand.com/en/men/news','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
+allWebsites(li);
 
 
 const val = [{'nom':'JAOUDET','prenom':'Theo'}];
