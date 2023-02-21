@@ -66,11 +66,10 @@ async function allWebsites(links=[]){
       else if(eshop=='https://www.montlimart.com/99-vetements'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
-        cat = await getCatM.scrape(eshop);
-        persoCategories = cat.slice(0,cat.length-6);
+        persoCategories = await getCatM.scrape(eshop);
 
         for(let c=0;c<persoCategories.length;c++){
-          newLink = eshop + persoCategories[c];
+          newLink = persoCategories[c];
           console.log(`🕵️‍♀️  Browsing ${newLink} category`);
           products = await montlimartbrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
