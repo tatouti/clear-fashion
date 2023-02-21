@@ -55,7 +55,7 @@ async function allWebsites(links=[]){
 
         for(let c=0;c<persoCategories.length;c++){
           newLink = eshop + persoCategories[c];
-          console.log(`🕵️‍♀️  Browsing ${newLink} category`);
+          console.log(`Browsing ${newLink} category`);
           products = await dedicatedbrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
         }
@@ -70,28 +70,28 @@ async function allWebsites(links=[]){
 
         for(let c=0;c<persoCategories.length;c++){
           newLink = persoCategories[c];
-          console.log(`🕵️‍♀️  Browsing ${newLink} category`);
+          console.log(`Browsing ${newLink} category`);
           products = await montlimartbrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
         }
         console.log(finalProducts.length," products for Montlimart");
-        writeFile(await products,"montlimart");
+        writeFile(finalProducts,"montlimart");
         console.log('Done Montlimart');
       }
-      else if(eshop=='https://shop.circlesportswear.com/collections/collection-homme'){
+      else if(eshop=='https://shop.circlesportswear.com'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
 
         cat = await getCatC.scrape(eshop);
-        persoCategories = cat.slice(0,cat.length-6);
+        persoCategories = cat.slice(0,3);
 
         for(let c=0;c<persoCategories.length;c++){
           newLink = eshop + persoCategories[c];
-          console.log(`🕵️‍♀️  Browsing ${newLink} category`);
+          console.log(`Browsing ${newLink} category`);
           products = await circlebrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
         }
         console.log(finalProducts.length," products for CircleSportsWear");
-        writeFile(await products,"circle");
+        writeFile(finalProducts,"circle");
         console.log('Done CircleSporstwear');
       }
     }
@@ -104,17 +104,8 @@ async function allWebsites(links=[]){
   }
 }
 
-const li = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com/collections/collection-homme'];
-//allWebsites(li);
-
-async function testtest(eshop='https://shop.circlesportswear.com/collections/collection-homme'){
-  console.log(`oui oui`);
-
-  persoCategories = await getCatC.scrape(eshop);
-  console.log(persoCategories);
-}
-
-testtest();
+const listWebsites = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com'];
+allWebsites(listWebsites);
 
 const val = [{'nom':'JAOUDET','prenom':'Theo'}];
 //mongodbAdd(val);
