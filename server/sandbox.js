@@ -45,7 +45,7 @@ async function allWebsites(links=[]){
       if(eshop=='https://www.dedicatedbrand.com/en/men/news'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
         products = await dedicatedbrand.scrape(eshop);
-        writeFile(products,"dedicated");
+        writeFile(await products,"dedicated");
         //console.log(products);
         console.log('Done Dedicated');
       }
@@ -53,14 +53,14 @@ async function allWebsites(links=[]){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
         products = await montlimartbrand.scrape(eshop);
         //console.log(products);
-        writeFile(products,"montlimart");
+        writeFile(await products,"montlimart");
         console.log('Done Montlimart');
       }
       else if(eshop=='https://shop.circlesportswear.com/collections/collection-homme'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
         products = await circlebrand.scrape(eshop);
         //console.log(products);
-        writeFile(products,"circle");
+        writeFile(await products,"circle");
         console.log('Done CircleSporstwear');
       }
     }
