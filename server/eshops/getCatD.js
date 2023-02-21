@@ -1,5 +1,6 @@
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const { slice } = require('cheerio/lib/api/traversing');
 
 /**
  * Parse webpage e-shop
@@ -14,7 +15,6 @@ const parse = data => {
       var category = $(element)
       .find('a')
       .prop("href");
-
 
       return [category];
     })
