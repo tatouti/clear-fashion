@@ -10,12 +10,13 @@ const cheerio = require('cheerio');
 const parse = data => {
   const $ = cheerio.load(data);
   console.log("Showing categories");
-  return $('.header__inline-menu .mega-menu')
+  return $('.header__inline-menu .Details-HeaderMenu* .mega-menu__list*')
     .map((i, element) => {
       var category = $(element)
       .find('a')
       .prop("href");
-      category = category.slice(4);
+      //category = category.slice(4);
+      console.log(category);
       return [category];
     })
     .get();
