@@ -8,7 +8,6 @@ const cheerio = require('cheerio');
  */
 const parse = data => {
   const $ = cheerio.load(data);
-  console.log("Showing for Montlimard");
   return $('.products-list .products-list__block*')
     .map((i, element) => {
       const name = $(element)
