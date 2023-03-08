@@ -20,7 +20,7 @@ const parse = data => {
       .find('.money')
       .text()
       .trim();
-      price = price.slice(1,price.length/2);
+      price = parseInt(price.slice(1,price.length/2));
       var caracteristique = $(element)
         .find('.card__characteristic')
         .text()
