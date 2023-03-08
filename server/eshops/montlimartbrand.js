@@ -14,10 +14,11 @@ const parse = data => {
         .find('.text-reset')
         .text()
         .trim();
-      const price = $(element)
-        .find('.price')
-        .text()
-        .trim();
+      const price = parseInt(
+        $(element)
+          .find('.price')
+          .text()
+      );
       const color = $(element)
         .find('.product-miniature__color')
         .text()
