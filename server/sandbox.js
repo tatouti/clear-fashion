@@ -29,7 +29,7 @@ async function mongodbAdd (products,shopName){
     const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
     const db =  client.db(MONGODB_DB_NAME);
     const collection = db.collection(shopName);
-    const result = collection.insertMany(products);
+    const result = await collection.insertMany(products);
     console.log(result);
     process.exit(0);
 
@@ -61,7 +61,7 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for Dedicated");
         writeFile(finalProducts,"dedicated");
-        mongodbAdd(finalProducts,"dedicated");
+        await mongodbAdd(finalProducts,"dedicated");
         console.log('Done Dedicated');
       }
       else if(eshop=='https://www.montlimart.com/99-vetements'){
@@ -77,7 +77,7 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for Montlimart");
         writeFile(finalProducts,"montlimart");
-        mongodbAdd(finalProducts,"montlimart");
+        await mongodbAdd(finalProducts,"montlimart");
         console.log('Done Montlimart');
       }
       else if(eshop=='https://shop.circlesportswear.com'){
@@ -94,7 +94,7 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for CircleSportsWear");
         writeFile(finalProducts,"circle");
-        mongodbAdd(finalProducts,"circle");
+        await mongodbAdd(finalProducts,"circle");
         console.log('Done CircleSporstwear');
       }
     }
@@ -108,7 +108,7 @@ async function allWebsites(links=[]){
 }
 
 const listWebsites = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com'];
-//allWebsites(listWebsites);
+allWebsites(listWebsites);
 
-const val = [{'nom':'JAOUDET','prenom':'Theo'}];
-mongodbAdd(val,"dedicated");
+//const val = [{'nom':'JAOUDET','prenom':'Theo'}];
+//mongodbAdd(val,"dedicated");
