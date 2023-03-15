@@ -30,8 +30,7 @@ async function mongodbAdd (products,shopName){
     const db =  client.db(MONGODB_DB_NAME);
     const collection = db.collection(shopName);
     const result = await collection.insertMany(products);
-    console.log(result);
-    process.exit(0);
+    console.log(`${products.length} products added in the databse ${shopName}`);
 
 }
 
@@ -61,7 +60,7 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for Dedicated");
         writeFile(finalProducts,"dedicated");
-        await mongodbAdd(finalProducts,"dedicated");
+        mongodbAdd(finalProducts,"dedicated");
         console.log('Done Dedicated');
       }
       else if(eshop=='https://www.montlimart.com/99-vetements'){
@@ -77,7 +76,7 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for Montlimart");
         writeFile(finalProducts,"montlimart");
-        await mongodbAdd(finalProducts,"montlimart");
+        mongodbAdd(finalProducts,"montlimart");
         console.log('Done Montlimart');
       }
       else if(eshop=='https://shop.circlesportswear.com'){
