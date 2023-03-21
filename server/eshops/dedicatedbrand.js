@@ -10,7 +10,7 @@ const parse = data => {
   const $ = cheerio.load(data);
   return $('.productList-container .productList')
     .map((i, element) => {
-      const shop = "dedicated";
+      const brand = "dedicated";
       const name = $(element)
         .find('.productList-title')
         .text()
@@ -25,7 +25,7 @@ const parse = data => {
         .find('.productList-image-materialInfo')
         .text()
         .trim();
-      return {shop,material,name, price};
+      return {brand,material,name, price};
     })
     .get();
 };
