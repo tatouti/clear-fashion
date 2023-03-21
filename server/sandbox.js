@@ -30,7 +30,7 @@ async function mongodbAdd (products,shopName){
     const db =  client.db(MONGODB_DB_NAME);
     const collection = db.collection(shopName);
     const result = await collection.insertMany(products);
-    console.log(`${products.length} products added in the databse ${shopName}`);
+    console.log(`✅${products.length} products added in the databse ${shopName}`);
 
 }
 
@@ -54,7 +54,7 @@ async function allWebsites(links=[]){
 
         for(let c=0;c<persoCategories.length;c++){
           newLink = eshop + persoCategories[c];
-          console.log(`Browsing ${newLink} category`);
+          console.log(`🔍 Browsing ${newLink} category`);
           products = await dedicatedbrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
         }
@@ -62,7 +62,7 @@ async function allWebsites(links=[]){
         writeFile(finalProducts,"dedicated");
         mongodbAdd(finalProducts,"dedicated");
         mongodbAdd(finalProducts,"GENERAL");
-        console.log('Done Dedicated');
+        console.log('💥Done Dedicated💥');
       }
       else if(eshop=='https://www.montlimart.com/99-vetements'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
@@ -71,7 +71,7 @@ async function allWebsites(links=[]){
 
         for(let c=0;c<persoCategories.length;c++){
           newLink = persoCategories[c];
-          console.log(`Browsing ${newLink} category`);
+          console.log(`🔍 Browsing ${newLink} category`);
           products = await montlimartbrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
         }
@@ -79,7 +79,7 @@ async function allWebsites(links=[]){
         writeFile(finalProducts,"montlimart");
         mongodbAdd(finalProducts,"montlimart");
         mongodbAdd(finalProducts,"GENERAL");
-        console.log('Done Montlimart');
+        console.log('💥Done Montlimart💥');
       }
       else if(eshop=='https://shop.circlesportswear.com'){
         console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
@@ -89,7 +89,7 @@ async function allWebsites(links=[]){
 
         for(let c=0;c<persoCategories.length;c++){
           newLink = eshop + persoCategories[c];
-          console.log(`Browsing ${newLink} category`);
+          console.log(`🔍 Browsing ${newLink} category`);
           products = await circlebrand.scrape(newLink);
           finalProducts = finalProducts.concat(products);
         }
@@ -97,10 +97,10 @@ async function allWebsites(links=[]){
         writeFile(finalProducts,"circle");
         await mongodbAdd(finalProducts,"circle");
         await mongodbAdd(finalProducts,"GENERAL");
-        console.log('Done CircleSporstwear');
+        console.log('💥Done CircleSporstwear💥');
       }
     }
-    console.log('Done ALL');
+    console.log('💯Done ALL💯');
     process.exit(0);
   }
   catch(e){
