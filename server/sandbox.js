@@ -95,8 +95,8 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for CircleSportsWear");
         writeFile(finalProducts,"circle");
-        mongodbAdd(finalProducts,"circle");
-        mongodbAdd(finalProducts,"GENERAL");
+        await mongodbAdd(finalProducts,"circle");
+        await mongodbAdd(finalProducts,"GENERAL");
         console.log('Done CircleSporstwear');
       }
     }
