@@ -4,13 +4,11 @@ const helmet = require('helmet');
 
 const PORT = 8092;
 
-function get_Client()
-{
-  const {MongoClient} = require('mongodb');
-  const MONGODB_URI = 'mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&w=majority';
-  const client = MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
-  return client;
-}
+const {MongoClient} = require('mongodb');
+var ObjectId = require('mongodb').ObjectId;
+
+const MONGODB_URI = "mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&w=majority";
+const MONGODB_DB_NAME = 'ClusterClearFashion';
 
 const app = express();
 
