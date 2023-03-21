@@ -4,11 +4,14 @@ const helmet = require('helmet');
 
 const PORT = 8092;
 
-const {MongoClient} = require('mongodb');
-var ObjectId = require('mongodb').ObjectId;
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const fs = require('fs');
 
-const MONGODB_URI = "mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&w=majority";
-const MONGODB_DB_NAME = 'ClusterClearFashion';
+function getClient() {
+  const uri = "mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+  return client;
+}
 
 const app = express();
 
@@ -20,13 +23,40 @@ app.use(helmet());
 
 app.options('*', cors());
 
-app.get('/', (request, response) => {
+/*app.get('/', (request, response) => {
   const client = get_Client();
   const MONGODB_DB_NAME = 'ClusterClearFashion';
   const db =  client.db(MONGODB_DB_NAME);
   const collection = db.collection(shopName);
   const result = collection.find(products);
   response.send(result);
+});*/
+
+app.get('/', async (request, response) => {
+  try{
+    const client = getClient();
+    const collection = client.db("ClusterClearFashion").collection("GENERAL");
+    const found = await collection.distinct('brand');
+    response.send({result: found});
+  }
+  catch{
+    response.send({error : "Couldn't fetch brands"}); 
+  }
+});
+
+app.get('/', async (request, response) => {
+  try{
+    const productId = request.params.id;
+    const script = {_id: ObjectId(productId)};
+    const client = getClient();
+    const collection = client.db("ClusterClearFashion").collection("GENERAL");
+    const found = await collection.find(script).toArray();
+    
+    response.send({result: found});
+
+  } catch(err) {
+	  response.send({error : "ID not found"});  
+  }
 });
 
 app.listen(PORT);
