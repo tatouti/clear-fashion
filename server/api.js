@@ -6,6 +6,7 @@ const PORT = 8092;
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const fs = require('fs');
+const { Console } = require('console');
 
 function getClient() {
   const uri = "mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&w=majority";
@@ -53,9 +54,10 @@ app.get('/products/search', async (request, response) => {
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
 
     var script ={};
-    var limit = request.params.limit;
-    var price = request.params.price;
-    const brand = request.params.brand;
+    console.log(request.query)
+    var limit = request.query.limit;
+    var price = request.query.price;
+    var brand = request.query.brand;
 
     if(limit == undefined){
       limit = 12;
@@ -65,7 +67,7 @@ app.get('/products/search', async (request, response) => {
     }
 
     if(brand){
-      script.brand_name = brand;
+      script.brand = brand;
     }
 
     if(price){
