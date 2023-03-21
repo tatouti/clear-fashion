@@ -32,11 +32,11 @@ app.options('*', cors());
   response.send(result);
 });*/
 
-app.get('/', async (request, response) => {
+app.get('/brands', async (request, response) => {
   try{
     const client = getClient();
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
-    const found = await collection.distinct('brand');
+    const found = await collection.distinct('shop');
     response.send({result: found});
   }
   catch{
@@ -44,7 +44,7 @@ app.get('/', async (request, response) => {
   }
 });
 
-app.get('/', async (request, response) => {
+app.get('/products/:id', async (request, response) => {
   try{
     const productId = request.params.id;
     const script = {_id: ObjectId(productId)};
