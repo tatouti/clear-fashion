@@ -54,7 +54,6 @@ app.get('/products/search', async (request, response) => {
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
 
     var script ={};
-    console.log(request.query)
     var limit = request.query.limit;
     var price = request.query.price;
     var brand = request.query.brand;
