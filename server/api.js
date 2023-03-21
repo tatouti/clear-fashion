@@ -32,15 +32,38 @@ app.options('*', cors());
   response.send(result);
 });*/
 
+app.get('/all', async (request, response) => {
+  try{
+    const client = getClient();
+    const collection = client.db("ClusterClearFashion").collection("GENERAL");
+    response.send({collection});
+  }
+  catch{
+    response.send({error : "Couldn't fetch all"}); 
+  }
+});
+
 app.get('/brands', async (request, response) => {
   try{
     const client = getClient();
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
-    const found = await collection.distinct('shop');
-    response.send({result: found});
+    const found = await collection.distinct('brand');
+    response.send({brands: found});
   }
   catch{
     response.send({error : "Couldn't fetch brands"}); 
+  }
+});
+
+app.get('/price', async (request, response) => {
+  try{
+    const client = getClient();
+    const collection = client.db("ClusterClearFashion").collection("GENERAL");
+    const found = await collection.distinct('price');
+    response.send({result: found});
+  }
+  catch{
+    response.send({error : "Couldn't fetch prices"}); 
   }
 });
 
