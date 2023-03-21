@@ -108,6 +108,3 @@ async function allWebsites(links=[]){
 
 const listWebsites = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com'];
 allWebsites(listWebsites);
-
-//const val = [{'nom':'JAOUDET','prenom':'Theo'}];
-//mongodbAdd(val,"dedicated");
