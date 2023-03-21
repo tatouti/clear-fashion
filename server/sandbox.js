@@ -61,6 +61,7 @@ async function allWebsites(links=[]){
         console.log(finalProducts.length," products for Dedicated");
         writeFile(finalProducts,"dedicated");
         mongodbAdd(finalProducts,"dedicated");
+        mongodbAdd(finalProducts,"GENERAL");
         console.log('Done Dedicated');
       }
       else if(eshop=='https://www.montlimart.com/99-vetements'){
@@ -77,6 +78,7 @@ async function allWebsites(links=[]){
         console.log(finalProducts.length," products for Montlimart");
         writeFile(finalProducts,"montlimart");
         mongodbAdd(finalProducts,"montlimart");
+        mongodbAdd(finalProducts,"GENERAL");
         console.log('Done Montlimart');
       }
       else if(eshop=='https://shop.circlesportswear.com'){
@@ -93,7 +95,8 @@ async function allWebsites(links=[]){
         }
         console.log(finalProducts.length," products for CircleSportsWear");
         writeFile(finalProducts,"circle");
-        await mongodbAdd(finalProducts,"circle");
+        mongodbAdd(finalProducts,"circle");
+        mongodbAdd(finalProducts,"GENERAL");
         console.log('Done CircleSporstwear');
       }
     }
