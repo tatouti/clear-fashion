@@ -10,6 +10,7 @@ const parse = data => {
   const $ = cheerio.load(data);
   return $('.product-grid-container .grid__item')
     .map((i, element) => {
+      const shop = "circle";
       var name = $(element)
         .find('.full-unstyled-link')
         .text()
@@ -27,7 +28,7 @@ const parse = data => {
         .trim();
       caracteristique = caracteristique.slice(0,caracteristique.length/2);
 
-      return {caracteristique,name, price};
+      return {shop,caracteristique,name, price};
     })
     .get();
 };
