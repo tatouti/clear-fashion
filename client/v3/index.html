@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
+  </head>
+  <body>
+    <h1>Clear fashion</h1>
+    <section id="options">
+      <div id="show">
+        <label for="show-select">Show:</label>
+        <select name="show" id="show-select">
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="48">48</option>
+        </select>
+      </div>
+      <div id="page">
+        <label for="page-select">Go to page:</label>
+        <select name="page" id="page-select"> </select>
+      </div>
+      <div id="filters">
+        <div id="brand">
+          <label for="brand-select">By brands:</label>
+          <select name="brand" id="brand-select"> 
+            <option value="all">All</option> 
+            <option value="coteleparis">coteleparis</option>
+            <option value="dedicated">dedicated</option>
+          </select>
+        </div>
+        <div id="reasonable">
+          <label for="price-select">By reasonable price:</label>
+          <select name="price" id="price-select"> 
+            <option value="all">All</option> 
+            <option value="25">25€</option> 
+            <option value="50">50€</option>
+            <option value="75">75€</option>
+            <option value="100">100€</option>
+          </select>
+        </div>
+        <div id="recently">
+          <label for="recently-select">By recently released:</label>
+          <select name="recently" id="recently-select"> 
+            <option value="1000">All</option> 
+            <option value="7">One week</option> 
+            <option value="14">Two weeks</option>
+            <option value="21">Three weeks</option>
+            <option value="31">One month</option>
+            <option value="62">Two months</option>
+          </select>
+        </div>
+      </div>
+      <div id="sort">
+        <label for="sort-select">Sort:</label>
+        <select name="sort" id="sort-select">
+          <option value="none">None</option>
+          <option value="price-asc">Cheaper</option>
+          <option value="price-desc">Expensive</option>
+          <option value="date-asc">Recently released</option>
+          <option value="date-desc">Anciently released</option>
+        </select>
+      </div>
+    </section>
+    <section id="indicators">
+      <h2>Indicators</h2>
+      <div>
+        <span>Number of products</span>
+        <span id="nbProducts">0</span>
+      </div>
+      <div>
+        <span>Number of brands</span>
+        <span id="nbBrands">0</span>
+      </div>
+      <div>
+        <span>Number of new products</span>
+        <span>0</span>
+      </div>
+      <div>
+        <span>p50 price value</span>
+        <span>0</span>
+      </div>
+      <div>
+        <span>p90 price value</span>
+        <span>0</span>
+      </div>
+      <div>
+        <span>p95 price value</span>
+        <span>0</span>
+      </div>
+      <div>
+        <span>Last released date</span>
+        <span>2020-01-01</span>
+      </div>
+    </section>
+    <section id="products"></section>
+    <script type="text/javascript" charset="UTF-8" src="portfolio.js"></script>
+  </body>
+</html>
