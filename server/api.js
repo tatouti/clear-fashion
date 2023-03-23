@@ -36,18 +36,6 @@ app.get('/brand', async (request, response) => {
   }
 });
 
-app.get('/price', async (request, response) => {
-  try{
-    const client = getClient();
-    const collection = client.db("ClusterClearFashion").collection("GENERAL");
-    const found = await collection.distinct('price');
-    response.send({prices: found});
-  }
-  catch{
-    response.send({error : "Couldn't fetch prices"}); 
-  }
-});
-
 app.get('/products/search', async (request, response) => {
   try{
     const client = getClient();
