@@ -27,8 +27,10 @@ const parse = data => {
         .text()
         .trim();
       caracteristique = caracteristique.slice(0,caracteristique.length/2);
-
-      return {brand,caracteristique,name, price};
+      const link = $(element)
+      .find('.full-unstyled-link')
+      .attr('href');
+      return {brand,caracteristique,name, price,link};
     })
     .get();
 };
