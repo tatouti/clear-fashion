@@ -111,3 +111,14 @@ async function allWebsites(links=[]){
 
 const listWebsites = ['https://www.dedicatedbrand.com/en/','https://www.montlimart.com/99-vetements','https://shop.circlesportswear.com'];
 allWebsites(listWebsites);
+
+/*async function TestHREF(eshop = "https://www.dedicatedbrand.com/en/men/all-men"){
+  console.log(`🕵️‍♀️  Browsing ${eshop} eshop`);
+
+  products = await dedicatedbrand.scrape(eshop);
+  console.log(products.length," products for Dedicated");
+  console.log(products)
+  console.log('💥Done Dedicated💥');
+}*/
+
+//TestHREF();
