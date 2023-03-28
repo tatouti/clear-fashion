@@ -29,6 +29,7 @@ const parse = data => {
       .find('.productList-link')
       .attr('href');
       link = "https://www.dedicatedbrand.com" + link;
+      
       return {brand,caracteristique,name, price,link};
     })
     .get();
