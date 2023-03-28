@@ -62,7 +62,7 @@ app.get('/products/search', async (request, response) => {
     }
 
     if(price!=""){
-      script.price = {$lte: parseInt(price)};
+      script.price = {$lte: parseFloat(price)};
     }
 
     const result = await collection.find(script).limit(limit).toArray();
