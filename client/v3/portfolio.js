@@ -36,9 +36,8 @@ const selectSort = document.querySelector('#sort-select');
  * @param {Array} result - products to display
  * @param {Object} meta - pagination meta info
  */
-const setCurrentProducts = ({result, meta}) => {
+const setCurrentProducts = ({result}) => {
   currentProducts = result;
-  currentPagination = meta;
 };
 
 /**
@@ -47,7 +46,7 @@ const setCurrentProducts = ({result, meta}) => {
  * @param  {Number}  [size=12] - size of the page
  * @return {Object}
  */
-const fetchProducts = async (size = 12) => {
+const fetchProducts = async (size = 12,brand="",price="") => {
   try {
     const response = await fetch(
       `https://clear-fashion-api.vercel.app/products/search?limit=${size}`
@@ -130,7 +129,7 @@ const render = (products, pagination) => {
  * Select the number of products to display
  */
 selectShow.addEventListener('change', async (event) => {
-  const products = await fetchProducts(currentPagination.currentPage, parseInt(event.target.value));
+  const products = await fetchProducts(12);
 
   setCurrentProducts(products);
   render(currentProducts, currentPagination);
