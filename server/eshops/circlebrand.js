@@ -27,9 +27,11 @@ const parse = data => {
         .text()
         .trim();
       caracteristique = caracteristique.slice(0,caracteristique.length/2);
-      const link = $(element)
+      var link = $(element)
       .find('.full-unstyled-link')
       .attr('href');
+      link = "https://shop.circlesportswear.com" +link;
+
       return {brand,caracteristique,name, price,link};
     })
     .get();
