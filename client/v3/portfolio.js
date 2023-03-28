@@ -47,22 +47,22 @@ const setCurrentProducts = ({result, meta}) => {
  * @param  {Number}  [size=12] - size of the page
  * @return {Object}
  */
-const fetchProducts = async (page = 1, size = 12) => {
+const fetchProducts = async (size = 12) => {
   try {
     const response = await fetch(
-      `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
+      `https://clear-fashion-api.vercel.app/products/search?limit=${size}`
     );
     const body = await response.json();
 
     if (body.success !== true) {
       console.error(body);
-      return {currentProducts, currentPagination};
+      return {currentProducts};
     }
 
     return body.data;
   } catch (error) {
     console.error(error);
-    return {currentProducts, currentPagination};
+    return {currentProducts};
   }
 };
 
