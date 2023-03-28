@@ -25,7 +25,7 @@ app.use(helmet());
 app.options('*', cors());
 
 app.get('/', (request, response) => {
-  response.send({'ack': true});
+  response.send({'ack': false});
 });
 
 app.get('/brand', async (request, response) => {
