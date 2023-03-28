@@ -24,7 +24,11 @@ const parse = data => {
         .find('.product-miniature__color')
         .text()
         .trim();
-      return {brand,caracteristique,name,price};
+      const link = $(element)
+      .find('.text-reset')
+      .attr('href');
+
+      return {brand,caracteristique,name,price,link};
     })
     .get();
 };
