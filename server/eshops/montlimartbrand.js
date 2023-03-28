@@ -20,11 +20,11 @@ const parse = data => {
           .find('.price')
           .text()
       );
-      const color = $(element)
+      const caracteristique = $(element)
         .find('.product-miniature__color')
         .text()
         .trim();
-      return {brand,name,color,price};
+      return {brand,caracteristique,name,price};
     })
     .get();
 };
