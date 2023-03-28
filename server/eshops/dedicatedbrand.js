@@ -25,7 +25,10 @@ const parse = data => {
         .find('.productList-image-materialInfo')
         .text()
         .trim();
-      return {brand,caracteristique,name, price};
+      const link = $(element)
+      .find('.productList-link')
+      .attr('href');
+      return {brand,caracteristique,name, price,link};
     })
     .get();
 };
