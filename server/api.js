@@ -49,6 +49,8 @@ app.get('/products/search', async (request, response) => {
     var limit = request.query.limit;
     var price = request.query.price;
     var brand = request.query.brand;
+    console.log(limit);
+    console.log(brand);
 
     if(limit == undefined){
       limit = 12;
