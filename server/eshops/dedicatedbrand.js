@@ -25,9 +25,10 @@ const parse = data => {
         .find('.productList-image-materialInfo')
         .text()
         .trim();
-      const link = $(element)
+      var link = $(element)
       .find('.productList-link')
       .attr('href');
+      link = "https://www.dedicatedbrand.com" + link;
       return {brand,caracteristique,name, price,link};
     })
     .get();
