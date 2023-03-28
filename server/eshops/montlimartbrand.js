@@ -15,7 +15,7 @@ const parse = data => {
         .find('.text-reset')
         .text()
         .trim();
-      const price = parseInt(
+      const price = parseFloat(
         $(element)
           .find('.price')
           .text()
