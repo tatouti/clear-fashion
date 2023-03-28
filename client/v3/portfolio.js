@@ -27,7 +27,6 @@ const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const selectBrand = document.querySelector('#brand-select');
 const selectPrice = document.querySelector('#price-select');
-const selectRecently = document.querySelector('#recently-select');
 const selectSort = document.querySelector('#sort-select');
 
 /**
@@ -131,6 +130,24 @@ const render = (products, pagination) => {
  */
 selectShow.addEventListener('change', async (event) => {
   const products = await fetchProducts(12);
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+selectBrand.addEventListener('change', async (event) => {
+  var brandP = event.target.value;
+  const products = await fetchProducts(12,brand=brandP);
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+selectPrice.addEventListener('change', async (event) => {
+  var priceP = event.target.value;
+  const products = await fetchProducts(12,price=priceP);
+
+  var price = event.target.value;
 
   setCurrentProducts(products);
   render(currentProducts, currentPagination);
