@@ -1,6 +1,5 @@
 // Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
-
 /*
 Description of the available api
 GET https://clear-fashion-api.vercel.app/
@@ -36,8 +35,9 @@ const selectSort = document.querySelector('#sort-select');
  * @param {Array} result - products to display
  * @param {Object} meta - pagination meta info
  */
-const setCurrentProducts = ({result}) => {
+const setCurrentProducts = ({result, meta}) => {
   currentProducts = result;
+  currentPagination = meta;
 };
 
 /**
@@ -49,19 +49,20 @@ const setCurrentProducts = ({result}) => {
 const fetchProducts = async (size = 12,brand="",price="") => {
   try {
     const response = await fetch(
-      `https://clear-fashion-api.vercel.app/products/search?brand=${brand}&price=${price}&limit=${size}`
+      ///`https://clear-fashion-api.vercel.app/products/search?brand=${brand}&price=${price}&limit=${size}`
+      `http://localhost:8092/products/search?brand=${brand}&price=${price}&limit=${size}`
     );
     const body = await response.json();
 
     if (body.success !== true) {
       console.error(body);
-      return {currentProducts};
+      return {currentProducts, currentPagination};
     }
 
     return body.data;
   } catch (error) {
     console.error(error);
-    return {currentProducts};
+    return {currentProducts, currentPagination};
   }
 };
 
@@ -75,7 +76,7 @@ const renderProducts = products => {
   const template = products
     .map(product => {
       return `
-      <div class="product" id=${product.uuid}>
+      <div class="product" id=${product._id}>
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
         <span>${product.price}</span>
@@ -138,131 +139,6 @@ selectShow.addEventListener('change', async (event) => {
 /**
  * Select the page of products to display
  */
-selectPage.addEventListener('change', async (event) => {
-  const products = await fetchProducts(parseInt(event.target.value),currentPagination.pageSize);
-
-  setCurrentProducts(products);
-  render(currentProducts, currentPagination);
-});
-
-/**
- * Select the brand of products to display
- */
-selectBrand.addEventListener('change', async (event) => {
-  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
-  var marque = event.target.value;
-  let listeOfPdts=[];
-  for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
-    if(marque!='all'){
-      if(products['result'][i]['brand']==marque){
-        listeOfPdts.push(products['result'][i]);
-      }
-    }
-    else{
-      listeOfPdts.push(products['result'][i]);
-    }
-  }
-  products['result']=listeOfPdts;
-
-  setCurrentProducts(products);
-  render(currentProducts, currentPagination);
-});
-
-/**
- * Select the price of products to display
- */
-selectPrice.addEventListener('change', async (event) => {
-  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
-  var price = event.target.value;
-  console.log(products)
-  let listeOfPdts=[];
-  for(let i = 0;i<currentPagination.pageSize;i++){ //Create a list of price
-    if(price!='all'){
-      if(products['result'][i]['price']<=price){
-        listeOfPdts.push(products['result'][i]);
-      }
-    }
-    else{
-      listeOfPdts.push(products['result'][i]);
-    }
-  }
-  products['result']=listeOfPdts;
-
-  setCurrentProducts(products);
-  render(currentProducts, currentPagination);
-});
-
-/**
- * Select the released date of products to display
- */
-selectRecently.addEventListener('change', async (event) => {
-  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
-  var today = new Date();
-  console.log(products)
-  let difference;
-  let TotalDays;
-  let dayReleased;
-  let newReleased = event.target.value;
-
-  console.log(`Affichage des produits dont la date de sortie est inférieure à ${newReleased} jours:`);
-  let listeOfPdts=[];
-  for(let i=0;i<currentPagination.pageSize;i++){
-    dayReleased = new Date(products['result'][i]['released']);
-    let difference = today.getTime() - dayReleased.getTime();
-    let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-    if(TotalDays<newReleased){
-      listeOfPdts.push(products['result'][i]);
-    }
-  }
-
-  products['result']=listeOfPdts;
-
-  setCurrentProducts(products);
-  render(currentProducts, currentPagination);
-});
-
-/**
- * Select the sort to display
- */
-selectSort.addEventListener('change', async (event) => {
-  const products = await fetchProducts(currentPagination.currentPage, currentPagination.pageSize);
-  var sortType = event.target.value;
-  let listeOfPdts=[];
-
-  if(sortType!='none'){
-    let tempDict = products['result'];
-
-    if(sortType=='price-asc'){
-      listeOfPdts = tempDict.sort(function(first, second) {
-        return first['price'] - second['price'];
-      });
-    }
-    else if(sortType=='price-desc'){
-      listeOfPdts = tempDict.sort(function(first, second) {
-        return second['price'] - first['price'];
-      });
-    }
-    else if(sortType=='date-asc'){
-      listeOfPdts = tempDict.sort(function(first, second) {
-        return first['released'] - second['released'];
-      });
-    }
-    else if(sortType=='date-desc'){
-      listeOfPdts = tempDict.sort(function(first, second) {
-        return second['released'] - first['released'];
-      });
-    }
-
-  }
-  else{
-    listeOfPdts = products['result'];
-  }
-  
-  products['result']=listeOfPdts;
-
-  setCurrentProducts(products);
-  render(currentProducts, currentPagination);
-});
 
 document.addEventListener('DOMContentLoaded', async () => {
   const products = await fetchProducts();
