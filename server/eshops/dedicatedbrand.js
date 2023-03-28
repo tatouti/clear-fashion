@@ -21,11 +21,11 @@ const parse = data => {
           .find('.productList-price')
           .text()
       );
-      const material = $(element)
+      const caracteristique = $(element)
         .find('.productList-image-materialInfo')
         .text()
         .trim();
-      return {brand,material,name, price};
+      return {brand,caracteristique,name, price};
     })
     .get();
 };
