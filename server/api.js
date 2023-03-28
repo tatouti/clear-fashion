@@ -24,6 +24,10 @@ app.use(helmet());
 
 app.options('*', cors());
 
+app.get('/', (request, response) => {
+  response.send({'ack': true});
+});
+
 app.get('/brand', async (request, response) => {
   try{
     const client = getClient();
