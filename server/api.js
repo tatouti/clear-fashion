@@ -46,9 +46,17 @@ app.get('/products/search', async (request, response) => {
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
 
     var script ={};
+    var page = request.query.page;
     var limit = request.query.limit;
     var price = request.query.price;
     var brand = request.query.brand;
+
+    if(page == undefined){
+      page = 1;
+    }
+    else{
+      page = parseInt(page);
+    }
 
     if(limit == undefined){
       limit = 12;
@@ -56,6 +64,7 @@ app.get('/products/search', async (request, response) => {
     else{
       limit = parseInt(limit);
     }
+    const skip = (page - 1) * limit;
 
     if((brand!="")){
       script.brand = brand;
@@ -65,7 +74,15 @@ app.get('/products/search', async (request, response) => {
       script.price = {$lte: parseFloat(price)};
     }
 
-    const result = await collection.find(script).limit(limit).toArray();
+    const result = await collection.find(script).skip(skip).limit(limit).toArray();
+/*
+    response.json({
+      currentPage: page,
+      totalPages: totalPages,
+      totalCount: count,
+      data: result
+    });*/
+
     response.send({result : result});
   }
   catch{
