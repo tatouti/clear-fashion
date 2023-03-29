@@ -28,7 +28,7 @@ app.get('/', (request, response) => {
   response.send({'ack': false});
 });
 
-app.get('/brand', async (request, response) => {
+app.get('/brands', async (request, response) => {
   try{
     const client = getClient();
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
