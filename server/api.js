@@ -85,8 +85,6 @@ app.get('/products/search', async (request, response) => {
       totalCount: count,
       data: result
     });
-
-    response.send({result : result});
   }
   catch{
     response.send({error : "Couldn't fetch searchs"}); 
