@@ -33,11 +33,21 @@ app.get('/brand', async (request, response) => {
     const client = getClient();
     const collection = client.db("ClusterClearFashion").collection("GENERAL");
     const found = await collection.distinct('brand');
-    response.send({brands: found});
+    //response.send({brands: found});
+    response.json(found);
   }
   catch{
     response.send({error : "Couldn't fetch brands"}); 
   }
+});
+
+app.get('/products', async (request, response) => {
+  const client = getClient();
+  const collection = client.db("ClusterClearFashion").collection("GENERAL");
+
+  const result = await collection.find({}).toArray();
+
+  response.json(result);
 });
 
 app.get('/products/search', async (request, response) => {
