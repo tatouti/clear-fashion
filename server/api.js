@@ -28,10 +28,6 @@ app.get('/', (request, response) => {
   response.send({'ack': false});
 });
 
-app.get('/test', (request, response) => {
-  response.send({'Results': true});
-});
-
 app.get('/brand', async (request, response) => {
   try{
     const client = getClient();
