@@ -40,18 +40,6 @@ app.get('/brand', async (request, response) => {
   }
 });
 
-app.get('/brands', async (req, res) => {
-  const MONGODB_URI = "mongodb+srv://tatouti:MongoDB6@clusterclearfashion.iyacjoa.mongodb.net/test?retryWrites=true&w=majority";
-  const MONGODB_DB_NAME = "ClusterClearFashion";
-  const client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
-  const db = client.db(MONGODB_DB_NAME);
-  const collection = db.collection('GENERAL');
-
-  const result = await collection.distinct('brand');
-
-  res.json(result);
-});
-
 app.get('/products/search', async (request, response) => {
   try{
     const client = getClient();
