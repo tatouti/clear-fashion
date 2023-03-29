@@ -48,7 +48,7 @@ const setCurrentProducts = ({result, meta}) => {
 const fetchProducts = async (page=1,size = 12,brand="",price="") => {
   try {
     const response = await fetch(
-      ///`https://clear-fashion-api.vercel.app/products/search?brand=${brand}&price=${price}&limit=${size}`
+      ///`https://clear-fashion-api-jaoudet.vercel.app/products/search?brand=${brand}&price=${price}&limit=${size}`
       `http://localhost:8092/products/search?page=${page}&limit=${size}&brand=${brand}&price=${price}`
     );
     const body = await response.json();
@@ -64,6 +64,33 @@ const fetchProducts = async (page=1,size = 12,brand="",price="") => {
     return {currentProducts, currentPagination};
   }
 };
+
+const fetchAllProducts = async () => {
+  try {
+    const response = await fetch(
+      `https://clear-fashion-api-jaoudet.vercel.app/products`
+    );
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error(error);
+    return currentProducts;
+  }
+};
+
+const fetchBrands = async () => {
+  try {
+    const response = await fetch(
+      `https://clear-fashion-api-jaoudet.vercel.app/brands`
+    );
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error(error);
+    return currentProducts;
+  }
+};
+
 
 /**
  * Render list of products
@@ -120,6 +147,12 @@ const render = (products, pagination) => {
   renderPagination(pagination);
   renderIndicators(pagination);
 };
+
+const all_products = await fetchAllProducts();
+spanNbProducts.innerHTML = all_products.length;
+
+const brand_names = await fetchBrands();
+spanNbBrands.innerHTML = brand_names.length;
 
 /**
  * Declaration of all Listeners
