@@ -74,14 +74,17 @@ app.get('/products/search', async (request, response) => {
       script.price = {$lte: parseFloat(price)};
     }
 
+    const count = await collection.countDocuments(script);
+    const totalPages = Math.ceil(count / limit);
+
     const result = await collection.find(script).skip(skip).limit(limit).toArray();
-/*
+
     response.json({
       currentPage: page,
       totalPages: totalPages,
       totalCount: count,
       data: result
-    });*/
+    });
 
     response.send({result : result});
   }
