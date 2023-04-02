@@ -181,6 +181,9 @@ selectPage.addEventListener('change', async (event) => {
 
 selectBrand.addEventListener('change', async (event) => {
   brand = event.target.value;
+  if(brand=='All'){
+    brand="";
+  }
   page = 1;
   let products = await fetchProducts(show=show, page=page, brand=brand, price="")
   renderSearchProducts(products);
@@ -188,6 +191,9 @@ selectBrand.addEventListener('change', async (event) => {
 
 selectPrice.addEventListener('change', async (event) => {
   price = event.target.value;
+  if(price=='All'){
+    price="";
+  }
   page = 1;
   let products = await fetchProducts(show=show, page=page, brand="", price=price)
   renderSearchProducts(products);
@@ -203,10 +209,10 @@ selectSort.addEventListener('change', async (event) => {
   if(sort!='Default'){
 
     if(sort=='Cheapest'){
-      listeOfPdts = await fetchSortProducts(-1);
+      listeOfPdts = await fetchSortProducts(1);
     }
     else if(sort=='Most expensive'){
-      listeOfPdts = await fetchSortProducts(1);
+      listeOfPdts = await fetchSortProducts(-1);
     }
 
   }
