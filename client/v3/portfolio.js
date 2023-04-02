@@ -70,7 +70,8 @@ const fetchProducts = async (page=1,size = 12,brand="",price="") => {
 const fetchAllProducts = async () => {
   try {
     const response = await fetch(
-      `https://clear-fashion-api-jaoudet.vercel.app/products`
+      ///`https://clear-fashion-api-jaoudet.vercel.app/products`
+      'http://localhost:8092/products'
     );
     const body = await response.json();
     return body;
@@ -83,7 +84,8 @@ const fetchAllProducts = async () => {
 const fetchBrands = async () => {
   try {
     const response = await fetch(
-      `https://clear-fashion-api-jaoudet.vercel.app/brands`
+      ///`https://clear-fashion-api-jaoudet.vercel.app/brands`
+      'http://localhost:8092/brands'
     );
     const body = await response.json();
     return body;
