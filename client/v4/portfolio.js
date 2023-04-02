@@ -81,6 +81,19 @@ const fetchBrands = async () => {
   }
 };
 
+const fetchSortProducts = async (sort=-1) => {
+  try {
+    const response = await fetch(
+      `http://localhost:8092/sort?sort=${sort}`
+    );
+    const body = await response.json();
+    return body;
+  } catch (error) {
+    console.error(error);
+    return currentProducts;
+  }
+};
+
 /**
  * Favorite products
  */
@@ -183,7 +196,26 @@ selectPrice.addEventListener('change', async (event) => {
 selectSort.addEventListener('change', async (event) => {
   sort = event.target.value;
   page = 1;
-  let products = await fetchProducts(show=show, page=page, brand=brand, price=price)
+  let products = await fetchSortProducts();
+
+  let listeOfPdts=[];
+
+  if(sort!='Default'){
+
+    if(sort=='Cheapest'){
+      listeOfPdts = await fetchSortProducts(-1);
+    }
+    else if(sort=='Most expensive'){
+      listeOfPdts = await fetchSortProducts(1);
+    }
+
+  }
+  else{
+    listeOfPdts = products
+  }
+  
+  products=listeOfPdts;
+
   renderSearchProducts(products);
 });
 
