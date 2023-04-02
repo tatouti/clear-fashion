@@ -59,8 +59,11 @@ app.get('/sort', async (request, response) => {
   if(sortVal==1){
     sortType.price = 1;
   }
-  else{
+  else if(sortVal==-1){
     sortType.price = -1;
+  }
+  else{
+    sortType.price = 0;
   }
 
   const result = await collection.find({}).sort(sortType).toArray();
