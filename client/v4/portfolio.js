@@ -133,11 +133,11 @@ const renderSearchProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <img class="productPhoto" src="${product.photo}" width="500" height="550">
-        <span>${product.brand}</span>
+        <img class="productPhoto" src="${product.photo}" width="250" height="250">
+        <span>Brand is ${product.brand} for</span>
         <a href="${product.link}" target="_blank">${product.name}</a>
-        <span>${product.price}€</span>
-        <span>${product.caracteristique}</span>
+        <span>at the price of ${product.price}€</span>
+        <span>and carateristic of ${product.caracteristique}</span>
         <button onclick="changeFavorite('${product._id}')">${textFavorite(product._id)}</button>
       </div>
     `;
@@ -152,11 +152,11 @@ const renderFavoriteProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <img src="${product.photo}" width="500" height="550">
-        <span>${product.brand}</span>
+        <img class="productPhoto" src="${product.photo}" width="250" height="250">
+        <span>Brand is ${product.brand} for</span>
         <a href="${product.link}" target="_blank">${product.name}</a>
-        <span>${product.price}€</span>
-        <span>${product.caracteristique}</span>
+        <span>at the price of ${product.price}€</span>
+        <span>and carateristic of ${product.caracteristique}</span>
         <button onclick="changeFavorite('${product._id}')">${textFavorite(product._id)}</button>
       </div>
     `;
