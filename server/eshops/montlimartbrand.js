@@ -28,7 +28,11 @@ const parse = data => {
       .find('.text-reset')
       .attr('href');
 
-      return {brand,caracteristique,name,price,link};
+      const photo=$(element)
+      .find('img')
+      .attr('data-src');
+
+      return {brand,caracteristique,name,price,link,photo};
     })
     .get();
 };
