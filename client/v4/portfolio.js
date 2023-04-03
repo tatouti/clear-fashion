@@ -133,7 +133,7 @@ const renderSearchProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <img class="productPhoto" src="${product.photo}">
+        <img class="productPhoto" src="${product.photo}" width="500" height="550">
         <span>${product.brand}</span>
         <a href="${product.link}" target="_blank">${product.name}</a>
         <span>${product.price}€</span>
@@ -152,7 +152,7 @@ const renderFavoriteProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
-        <img src="${product.photo}">
+        <img src="${product.photo}" width="500" height="550">
         <span>${product.brand}</span>
         <a href="${product.link}" target="_blank">${product.name}</a>
         <span>${product.price}€</span>
