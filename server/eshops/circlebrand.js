@@ -32,7 +32,12 @@ const parse = data => {
       .attr('href');
       link = "https://shop.circlesportswear.com" +link;
 
-      return {brand,caracteristique,name, price,link};
+      var img = $(element)
+        .find('img')
+        .attr('src');
+      var photo = 'https:'+img;
+
+      return {brand,caracteristique,name, price,link,photo};
     })
     .get();
 };
